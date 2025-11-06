@@ -159,7 +159,7 @@ quickly create a Sphinx-based documentation project.
 
 **Requirements**
 
-* ``rye`` installed.
+* ``uv`` installed.
 
 **Steps**
 
@@ -167,15 +167,15 @@ quickly create a Sphinx-based documentation project.
 
      mkdir new_project
      cd new_project
-#. Initialize the project with ``rye``::
+#. Initialize the project with ``uv``::
 
-     rye init
+     uv init
 #. Add Sphinx as a dependency::
 
-     rye add sphinx
+     uv add sphinx
 #. Run the Sphinx quickstart command and follow the prompts::
 
-     rye run sphinx-quickstart
+     uv run sphinx-quickstart
 #. Open the project in an IDE, such as VS Code::
 
      code .
