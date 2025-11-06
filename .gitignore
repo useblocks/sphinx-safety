@@ -8,7 +8,6 @@ wheels/
 
 # venv
 .venv
-.python-version
 _build
 .report.json
 .vscode

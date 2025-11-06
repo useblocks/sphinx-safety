@@ -9,8 +9,8 @@
 # Also a declarative configuration format is generally a good idea.
 
 [project]
-name = "Sphinx-Needs Demo"
-description = "Showcases for working with Sphinx-Needs"
+name = "Sphinx-Safety-Classification"
+description = "Safety Classification for Sphinx Documentation"
 srcdir = "."
 
 # Rules for the ubCode formater, to get a nice looking documentation.

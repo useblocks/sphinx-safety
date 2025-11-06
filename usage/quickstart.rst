@@ -9,13 +9,13 @@ Installation
 This explains how to get a local copy of this documentation, so that ``use cases``
 and co. can be extended.
 
-Prerequirement: Python and Rye must be installed
+Prerequirement: Python and uv must be installed
 
 1. Checkout the repository: ``git clone https://github.com/useblocks/sphinx-safety``
 #. ``cd sphinx-safety``
-#. ``rye init``, this will create a virtuakl Python environment and
+#. ``uv init``, this will create a virtual Python environment and
    installs all needed dependencies.
-#. Build the docs via ``rye run sphinx-build -a -E -b html . _build/html``.
+#. Build the docs via ``uv run sphinx-build -a -E -b html . _build/html``.
 #. Open ``_build/html/index.html`` with your browser of choice.
 
 Usage
