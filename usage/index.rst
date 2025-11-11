@@ -80,11 +80,11 @@ Features are stored in tool-specific folders, such as ``/tools/sphinx/``.
       Read Traceability objects from rst/md files
       into the internal storage.
 
-      .. error:: Syntax errors in rst/md files     <- A first error with title
+      .. fault:: Syntax errors in rst/md files     <- A first error with title
          :id: ER_SN_SYN_ER                         <- Unique ID
          :td: 1                                    <- Tool Error Detection level
 
-      .. error:: Missing external needs.json file  <- A second error with title
+      .. fault:: Missing external needs.json file  <- A second error with title
          :id: ER_SN_JSON_NOT_FOUND                 <- Unique ID
          :td: 3                                    <- Tool Error Detection level
 
@@ -190,10 +190,10 @@ quickly create a Sphinx-based documentation project.
    and ``description``.
 #. Sync dependencies::
 
-     rye sync
+     uv sync
 #. Build the documentation::
 
-     rye run sphinx-build -b html . _build/html/
+     uv run sphinx-build -b html . _build/html/
 #. Open the generated documentation in a browser::
 
      _build/html/index.html

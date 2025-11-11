@@ -46,7 +46,7 @@ Overall Features: :need_count:`type=="feature"`
 
 Errors
 ------
-Overall Errors: :need_count:`type=="error"`
+Overall Errors: :need_count:`type=="fault"`
 
 .. list-table::
    :align: center
@@ -58,14 +58,14 @@ Overall Errors: :need_count:`type=="error"`
      * Measurement
      * Target
    - * Errors without Mitigation
-     * :need_count:`type == "error" and len(avoids_back) == 0`
+     * :need_count:`type == "fault" and len(avoids_back) == 0`
      * 0
 
 .. dropdown:: Errors without Mitigation
 
    .. needtable::
       :columns: id, title, parent_needs
-      :filter: type == "error" and len(avoids_back) == 0
+      :filter: type == "fault" and len(avoids_back) == 0
 
 Restrictions
 ------------

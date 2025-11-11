@@ -141,9 +141,9 @@ color = "#LawnGreen"
 style = "rectangle"
 
 [[needs.types]]
-directive = "error"
-title = "Error"
-prefix = "ERR_"
+directive = "fault"
+title = "Fault"
+prefix = "FAULT_"
 color = "#Pink"
 style = "rectangle"
 
