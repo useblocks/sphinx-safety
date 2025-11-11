@@ -23,16 +23,16 @@ Features
 
    Readin all needed rst/md files for the Sphinx project.
 
-   .. error:: Needed folders/files are ignored
+   .. fault:: Needed folders/files are ignored
       :id: ER_FILES_IGNORED
 
       Error is logged by Sphinx and with build-option ``-W`` this warning
       gets thrown as error and stops the build.
 
-   .. error:: Needed files/folders have not supported encoding
+   .. fault:: Needed files/folders have not supported encoding
       :id: ER_SPH_WRONG_ENCODING
 
-   .. error:: Access to files/folders not given
+   .. fault:: Access to files/folders not given
       :id: ER_SPH_WRONG_ACCESS
 
 Inline Text Formatting
@@ -641,7 +641,7 @@ Directives for Admonitions
 
    .. code-block:: rst
 
-      .. error::
+      .. fault::
 
          This is an error.
 

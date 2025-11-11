@@ -39,11 +39,11 @@ By Tool
 By Type
 ~~~~~~~
 .. needpie::
-   :labels: Use Case, Feature, Error, Restriction, Artifact
+   :labels: Use Case, Feature, Fault, Restriction, Artifact
 
    type == "usecase"
    type == "feature"
-   type == "error"
+   type == "fault"
    type == "restriction"
    type == "artifact"
 

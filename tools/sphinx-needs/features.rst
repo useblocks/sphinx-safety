@@ -22,31 +22,31 @@ Features
 
    Read Traceability objects from rst/md files into the internal storage.
 
-   .. error:: Syntax errors in rst/md files cause Traceability objects to be ignored
+   .. fault:: Syntax errors in rst/md files cause Traceability objects to be ignored
       :id: ER_SN_SYN_ER
 
-   .. error:: Missing external needs.json file
+   .. fault:: Missing external needs.json file
       :id: ER_SN_JSON_NOT_FOUND
 
-   .. error:: Corrupted external needs.json file
+   .. fault:: Corrupted external needs.json file
       :id: ER_SN_JSON_CORRUPTED
 
-   .. error:: Authentication issues with needsservice
+   .. fault:: Authentication issues with needsservice
       :id: ER_SN_SER_AUTH
 
-   .. error:: Invalid meta-data in rst/md files leads to ignored Traceability objects
+   .. fault:: Invalid meta-data in rst/md files leads to ignored Traceability objects
       :id: ER_SN_DATA_INVALID
 
-   .. error:: Programmatic errors in rst/md files result in ignored Traceability objects
+   .. fault:: Programmatic errors in rst/md files result in ignored Traceability objects
       :id: ER_SN_CODE_ERR
 
-   .. error:: Invalid or incorrect filters used for external needs.json
+   .. fault:: Invalid or incorrect filters used for external needs.json
       :id: ER_SN_JSON_FILTER
 
-   .. error:: External service unreachable by needsservice
+   .. fault:: External service unreachable by needsservice
       :id: ER_SN_SER_DOWN
 
-   .. error:: needsservice unable to process data from external service
+   .. fault:: needsservice unable to process data from external service
       :id: ER_SN_SER_INVALID
 
 .. feature:: Display Traceability objects content in Sphinx-Needs
@@ -54,7 +54,7 @@ Features
    :tools: TOOL_SN
    :si: yes
 
-   .. error:: Content contains syntax errors
+   .. fault:: Content contains syntax errors
       :id: ER_SN_CONTENT_SYNTAX
 
 .. feature:: Assign meta-data to Traceability objects in Sphinx-Needs
@@ -62,10 +62,10 @@ Features
    :tools: TOOL_SN
    :si: yes
 
-   .. error:: Dynamic functions return invalid meta-data
+   .. fault:: Dynamic functions return invalid meta-data
       :id: ER_SN_DYN_INVALID
 
-   .. error:: Dynamic functions return wrong meta-data
+   .. fault:: Dynamic functions return wrong meta-data
       :id: ER_SN_DYN_WRONG
 
       Internal dynamic functions are checked by test-cases in Sphinx-Needs
@@ -76,10 +76,10 @@ Features
 
       So self-written dynamic functions need test cases as well!
 
-   .. error:: Sphinx-Needs data not valid
+   .. fault:: Sphinx-Needs data not valid
       :id: ER_SN_META_INVALID
 
-   .. error:: Sphinx-Needs data is not process-compliant
+   .. fault:: Sphinx-Needs data is not process-compliant
       :id: ER_SN_META_NOT_COMPLIANT
 
 .. feature:: Establish links between Traceability objects in Sphinx-Needs
@@ -87,7 +87,7 @@ Features
    :tools: TOOL_SN
    :si: yes
 
-   .. error:: Back-links are not set
+   .. fault:: Back-links are not set
       :id: ER_SN_LINKS_NO_BACK
 
       Links are set only in one direction but not in the other.
@@ -96,16 +96,16 @@ Features
       linked to a specification, but you can't find the linked Traceability
       object during specification implementation.
 
-   .. error:: Internal target link is not found
+   .. fault:: Internal target link is not found
       :id: ER_SN_LINKS_NO_TARGET
 
-   .. error:: External needs not found
+   .. fault:: External needs not found
       :id: ER_SN_LINKS_NO_EXT
 
-   .. error:: External needs corrupted
+   .. fault:: External needs corrupted
       :id: ER_SN_LINKS_EXT_COR
 
-   .. error:: Links missing
+   .. fault:: Links missing
       :id: ER_SN_LINKS_MISSING
 
       Set links are not treated correctly and are not part of the final
@@ -119,13 +119,13 @@ Features
    :tools: TOOL_SN
    :si: yes
 
-   .. error:: Meta-data missing
+   .. fault:: Meta-data missing
       :id: ER_SN_LAY_META_MIS
 
       Needed meta-data is not part of the final representation in the
       doctree and so later HTML/PDF build
 
-   .. error:: Wrong meta-data is used
+   .. fault:: Wrong meta-data is used
       :id: ER_SN_LAY_META_WRONG
 
       Sphinx-Needs is adding wrong Meta-Data to the final doctree-layout
@@ -135,16 +135,16 @@ Features
    :tools: TOOL_SN
    :si: yes
 
-   .. error:: Objects missing in needs.json
+   .. fault:: Objects missing in needs.json
       :id: ER_SN_JSON_MIS
 
-   .. error:: Traceability objects meta-data corrupted
+   .. fault:: Traceability objects meta-data corrupted
       :id: ER_SN_JSON_COR
 
-   .. error:: Traceability objects links corrupted
+   .. fault:: Traceability objects links corrupted
       :id: ER_SN_JSON_LINKS_COR
 
-   .. error:: Traceability objects content corrupted
+   .. fault:: Traceability objects content corrupted
       :id: ER_SN_JSON_CONTENT_COR
       
 
@@ -156,23 +156,23 @@ Dynamic Content
    :tools: TOOL_SN
    :si: yes
 
-   .. error:: Function gets not executed
+   .. fault:: Function gets not executed
       :id: ER_SN_DYN_NO_EXEC
 
       The function gets not executed and in the generated documentation the
       dynamic-function string can be found.
 
-   .. error:: Function returns invalid value
+   .. fault:: Function returns invalid value
       :id: ER_SN_DYN_INVALID2
 
       Function returns a technically not allowed value.
 
-   .. error:: Function returns wrong calculated values
+   .. fault:: Function returns wrong calculated values
       :id: ER_SN_DYN_WRONG_CALC
 
       The dynamic functions calculates wrong values
 
-   .. error:: Function returns no value
+   .. fault:: Function returns no value
       :id: ER_SN_DYN_NO_VALUE
 
       The dynamic function does not return a value, so the meta-data is not
@@ -183,18 +183,18 @@ Dynamic Content
    :tools: TOOL_SN
    :si: yes
 
-   .. error:: Template file not found
+   .. fault:: Template file not found
       :id: ER_SN_TEMPLATE_FILE_NOT_FOUND
 
       The template file is not found in the Sphinx-Needs templates directory.
 
-   .. error:: Template file is not a valid Jinja2 template
+   .. fault:: Template file is not a valid Jinja2 template
       :id: ER_SN_TEMPLATE_FILE_INVALID
 
       The template file is not a valid Jinja2 template, so it cannot be
       processed by Sphinx-Needs.
 
-   .. error:: Template file contains syntax errors
+   .. fault:: Template file contains syntax errors
       :id: ER_SN_TEMPLATE_FILE_SYNTAX
 
       The template file contains syntax errors and cannot be processed by
@@ -205,18 +205,18 @@ Dynamic Content
    :tools: TOOL_SN
    :si: yes
 
-   .. error:: Template file not found
+   .. fault:: Template file not found
       :id: ER_SN_TEMPLATE_NEED_FILE_NOT_FOUND
 
       The template file is not found in the Sphinx-Needs templates directory.
 
-   .. error:: Template file is not a valid Jinja2 template
+   .. fault:: Template file is not a valid Jinja2 template
       :id: ER_SN_TEMPLATE_NEED_FILE_INVALID
 
       The template file is not a valid Jinja2 template, so it cannot be
       processed by Sphinx-Needs.
 
-   .. error:: Template file contains syntax errors
+   .. fault:: Template file contains syntax errors
       :id: ER_SN_TEMPLATE_NEED_FILE_SYNTAX
 
       The template file contains syntax errors and cannot be processed by
@@ -264,19 +264,19 @@ Core Need Object
          :author: John Doe
          :component: UI
 
-   .. error:: Invalid option used in a need
+   .. fault:: Invalid option used in a need
       :id: ER_SN_INVALID_OPTION
 
       If an option is not defined in the configuration, Sphinx-Needs will
       raise an error during the build process.
 
-   .. error:: Option value is not valid
+   .. fault:: Option value is not valid
       :id: ER_SN_INVALID_OPTION_VALUE
 
       If an option value does not match the expected format or type, Sphinx-Needs
       will raise an error during the build process.
 
-   .. error:: Option value is not allowed
+   .. fault:: Option value is not allowed
       :id: ER_SN_OPTION_NOT_ALLOWED
 
       If an option value is not allowed by the configuration, Sphinx-Needs will
@@ -306,13 +306,13 @@ Core Need Object
           }
       ]
 
-   .. error:: Invalid link type used in a need
+   .. fault:: Invalid link type used in a need
       :id: ER_SN_INVALID_LINK_TYPE
 
       If a link type is not defined in the configuration, Sphinx-Needs will
       raise an error during the build process.
 
-   .. error:: Link type value is not valid
+   .. fault:: Link type value is not valid
       :id: ER_SN_INVALID_LINK_TYPE_VALUE
 
       If a link type value does not match the expected format or type, Sphinx-Needs
@@ -332,25 +332,25 @@ Core Need Object
       .. req:: This requirement will get an ID automatically.
          :tags: auto_id
 
-   .. error:: ID generation failed
+   .. fault:: ID generation failed
       :id: ER_SN_ID_GENERATION_FAILED
 
       If the automatic ID generation fails, Sphinx-Needs will raise an error
       during the build process.
 
-   .. error:: ID already exists
+   .. fault:: ID already exists
       :id: ER_SN_ID_ALREADY_EXISTS
 
       If the generated ID already exists in the project, Sphinx-Needs will
       raise an error during the build process.
 
-   .. error:: ID format is invalid
+   .. fault:: ID format is invalid
       :id: ER_SN_ID_FORMAT_INVALID
 
       If the generated ID does not match the expected format, Sphinx-Needs will
       raise an error during the build process.
 
-   .. error:: ID length is invalid
+   .. fault:: ID length is invalid
       :id: ER_SN_ID_LENGTH_INVALID
 
       If the generated ID does not match the expected length, Sphinx-Needs will
@@ -369,19 +369,19 @@ Core Need Object
       .. req:: A requirement with a specific ID
          :id: R_IMPORTANT_FEATURE
 
-   .. error:: Manual ID already exists
+   .. fault:: Manual ID already exists
       :id: ER_SN_MANUAL_ID_EXISTS
 
       If a manually set ID already exists in the project, Sphinx-Needs will
       raise an error during the build process.
 
-   .. error:: Manual ID format is invalid
+   .. fault:: Manual ID format is invalid
       :id: ER_SN_MANUAL_ID_FORMAT_INVALID
 
       If a manually set ID does not match the expected format, Sphinx-Needs will
       raise an error during the build process.
 
-   .. error:: Manual ID length is invalid
+   .. fault:: Manual ID length is invalid
       :id: ER_SN_MANUAL_ID_LENGTH_INVALID
 
       If a manually set ID does not match the expected length, Sphinx-Needs will
@@ -406,7 +406,7 @@ Core Need Object
           ('rejected', 'Will not be implemented'),
       ]
 
-   .. error:: Invalid status used in a need
+   .. fault:: Invalid status used in a need
       :id: ER_SN_INVALID_STATUS
 
       If a need uses a status that is not defined in the configuration,
@@ -455,7 +455,7 @@ Core Need Object
    across the project. The build will fail if a duplicate ID is found,
    ensuring data consistency.
 
-   .. error:: Duplicate ID is not detected
+   .. fault:: Duplicate ID is not detected
       :id: ER_SN_DUPLICATE_ID
 
       If a duplicate ID is not detected, it may lead to incorrect traceability
@@ -536,21 +536,21 @@ Directives for Creating & Displaying Needs
 
       .. needimport:: ../../shared/output/needs.json
 
-   .. error:: Importing needs is not completed
+   .. fault:: Importing needs is not completed
       :id: ER_SN_IMPORT_NOT_COMPLETED
       
 
       If the import process is not completed, it may lead to missing or
       incomplete data in the project.
 
-   .. error:: Importing needs is not valid
+   .. fault:: Importing needs is not valid
       :id: ER_SN_IMPORT_NOT_VALID
       
 
       If the imported data is not valid, it may lead to errors in the
       documentation or incorrect traceability.
 
-   .. error:: Importing needs is not accessible
+   .. fault:: Importing needs is not accessible
       :id: ER_SN_IMPORT_NOT_ACCESSIBLE
       
 
@@ -570,21 +570,21 @@ Directives for Creating & Displaying Needs
       .. needextend:: status == 'in_progress'
          :add_tags: sprint_5
 
-   .. error:: Bulk modification of needs is not completed
+   .. fault:: Bulk modification of needs is not completed
       :id: ER_SN_EXTEND_NOT_COMPLETED
       
 
       If the bulk modification process is not completed, it may lead to
       missing or incomplete data in the project.
 
-   .. error:: Bulk modification failes silently
+   .. fault:: Bulk modification failes silently
       :id: ER_SN_EXTEND_FAIL_SILENTLY
       
 
       If the bulk modification fails silently, it may lead to missing or
       incomplete data in the project without any error message.
 
-   .. error:: Bulk modification of needs is not valid
+   .. fault:: Bulk modification of needs is not valid
       :id: ER_SN_EXTEND_NOT_VALID
       
 
@@ -611,14 +611,14 @@ Linking and Traceability
          :id: R_LOGIN_COLOR
          :links: S_LOGIN_BUTTON
 
-   .. error:: Link target not found
+   .. fault:: Link target not found
       :id: ER_SN_LINK_TARGET_NOT_FOUND
       
 
       If a link target is not found, it may lead to missing traceability
       and incorrect documentation.
 
-   .. error:: Link target is not valid
+   .. fault:: Link target is not valid
       :id: ER_SN_LINK_TARGET_NOT_VALID
       
 
@@ -643,14 +643,14 @@ Linking and Traceability
    does not exist. This helps to maintain the integrity of the
    traceability data.
 
-   .. error:: Dead link not detected
+   .. fault:: Dead link not detected
       :id: ER_SN_DEAD_LINK_NOT_DETECTED
       
 
       If a dead link is not detected, it may lead to missing traceability
       and incorrect documentation.
 
-   .. error:: Dead link false positive
+   .. fault:: Dead link false positive
       :id: ER_SN_DEAD_LINK_FALSE_POSITIVE
       
 
@@ -675,37 +675,37 @@ Automated Features
       needs_constraints = {
           "req_verified": {
               "check_code": "len(links_back['verifies']) > 0",
-              "severity": "error",
+              "severity": "fault",
               "filter": "'req' in tags"
           }
       }
 
-   .. error:: Constraint not checked during build
+   .. fault:: Constraint not checked during build
       :id: ER_SN_CONSTRAINT_NOT_CHECKED
 
       If a constraint is not checked during the build, it may lead to
       missing or incorrect traceability data.
 
-   .. error:: Constraint check fails silently
+   .. fault:: Constraint check fails silently
       :id: ER_SN_CONSTRAINT_FAIL_SILENTLY
 
       If a constraint check fails silently, it may lead to missing or
       incorrect traceability data without any error message.
 
-   .. error:: Constraint check runs with wrong data
+   .. fault:: Constraint check runs with wrong data
       :id: ER_SN_CONSTRAINT_WRONG_DATA
 
       If a constraint check runs with wrong data, it may lead to incorrect
       traceability data and errors in the documentation.
 
-   .. error:: Constraint check runs with incomplete data
+   .. fault:: Constraint check runs with incomplete data
       :id: ER_SN_CONSTRAINT_INCOMPLETE_DATA
       
 
       If a constraint check runs with incomplete data, it may lead to
       missing or incorrect traceability data and errors in the documentation.
 
-   .. error:: Constraint check runs with invalid data
+   .. fault:: Constraint check runs with invalid data
       :id: ER_SN_CONSTRAINT_INVALID_DATA
 
       If a constraint check runs with invalid data, it may lead to errors in
@@ -744,19 +744,19 @@ Configuration & Customization
           }
       }
 
-   .. error:: Layout leads to incorrect rendering
+   .. fault:: Layout leads to incorrect rendering
       :id: ER_SN_LAYOUT_INCORRECT_RENDERING
 
       If a layout leads to incorrect rendering, it may cause confusion in the
       documentation and make it hard to read.
 
-   .. error:: Layout leads to missing information
+   .. fault:: Layout leads to missing information
       :id: ER_SN_LAYOUT_MISSING_INFO
 
       If a layout leads to missing information, it may cause confusion in the
       documentation and make it hard to read.
 
-   .. error:: Layout leads to incorrect information
+   .. fault:: Layout leads to incorrect information
       :id: ER_SN_LAYOUT_INCORRECT_INFO
 
       If a layout leads to incorrect information, it may cause confusion in the
@@ -778,19 +778,19 @@ Exporting & Reporting
 
       sphinx-build -b needs . _build
 
-   .. error:: Exporting needs.json fails silently
+   .. fault:: Exporting needs.json fails silently
       :id: ER_SN_EXPORT_JSON_FAIL_SILENTLY
 
       If the export fails silently, it may lead to missing or incomplete data
       in the project without any error message.
 
-   .. error:: Exported needs.json file is not valid
+   .. fault:: Exported needs.json file is not valid
       :id: ER_SN_EXPORT_JSON_NOT_VALID
 
       If the exported needs.json file is not valid, it may lead to errors in
       the documentation or incorrect traceability. 
 
-   .. error:: Exported needs.json file is corrupted
+   .. fault:: Exported needs.json file is corrupted
       :id: ER_SN_EXPORT_JSON_CORRUPTED
 
       If the exported needs.json file is corrupted, it may lead to errors in
@@ -805,26 +805,26 @@ Exporting & Reporting
    its location in the HTML documentation. This is useful for linking
    from external tools directly to the requirement definition.
 
-   .. error:: Permalink generation fails silently
+   .. fault:: Permalink generation fails silently
       :id: ER_SN_PERMALINK_FAIL_SILENTLY
       
 
       If the permalink generation fails silently, it may lead to missing or
       incomplete data in the project without any error message.
 
-   .. error:: Permalink is not valid
+   .. fault:: Permalink is not valid
       :id: ER_SN_PERMALINK_NOT_VALID
 
       If the permalink is not valid, it may lead to errors in the
       documentation or incorrect traceability.
 
-   .. error:: Permalink links to non-existing need
+   .. fault:: Permalink links to non-existing need
       :id: ER_SN_PERMALINK_NON_EXISTING
 
       If the permalink links to a non-existing need, it may lead to errors in
       the documentation or incorrect traceability.
 
-   .. error:: Permalink links to wrong need
+   .. fault:: Permalink links to wrong need
       :id: ER_SN_PERMALINK_WRONG_NEED
 
       If the permalink links to the wrong need, it may lead to errors in the

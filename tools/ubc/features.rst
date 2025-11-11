@@ -21,7 +21,7 @@ Features
    :inputs: ART_SPHINX_RST
    :si: no
 
-   .. error:: Not covered format
+   .. fault:: Not covered format
       :id: ER_UBC_LINTING_NOT_COVERED
 
 .. feature:: Format rst files
@@ -29,7 +29,7 @@ Features
    :tools: TOOL_UBC
    :si: yes
 
-   .. error:: Format introduces errors
+   .. fault:: Format introduces errors
       :id: ER_UBC_FORMAT_ERRORS
 
 .. feature:: Clean internal caches
@@ -44,7 +44,7 @@ Features
    :outputs: ART_UBC_NEEDS_JSON
    :si: yes
 
-   .. error:: Incomplete data
+   .. fault:: Incomplete data
       :id: ER_UBC_JSON_INCOMPLETE
 
       This can have several reasons:
@@ -70,10 +70,10 @@ Features
    :inputs: ART_UBC_NEEDS_JSON
    :si: no
 
-   .. error:: Unknown file format
+   .. fault:: Unknown file format
       :id: ER_UBC_VAL_FORMAT
 
-   .. error:: Incomplete Validation
+   .. fault:: Incomplete Validation
       :id: ER_UBC_VAL_INCOMPLETE
 
       Not all types and options, which are represetned in a given needs.json

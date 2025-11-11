@@ -87,7 +87,7 @@ are marked with a green circle.
       +outputs <<artifact>>
    }
 
-   class "Error" as er {
+   class "Fault" as er {
       __Defaults__
       +title: string
       +id: string
