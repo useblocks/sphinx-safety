@@ -34,6 +34,8 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version-file: ".python-version"
+      - name: Install graphviz
+        run: sudo apt-get --yes install graphviz
       - name: Build docs
         run: uv run sphinx-build -b html . _build/html
       - name: Upload artifact
