@@ -13,5 +13,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version-file: ".python-version"
+      - name: Install graphviz and Java
+        run: sudo apt-get --yes install graphviz openjdk-21-jre
       - name: Build docs
         run: uv run sphinx-build -b html . _build/html
