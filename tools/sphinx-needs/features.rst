@@ -5,7 +5,7 @@ Features
 
    .. needtable::
       :filter: "tools/sphinx-needs/" in docname and type == "feature"
-      :columns: id, title, si as "SI", parent_needs_back as "Errors"
+      :columns: id, title, si as "SI", parent_needs_back as "Faults"
 
    .. needpie:: Sphinx-Needs features
       :legend:

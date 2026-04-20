@@ -5,7 +5,7 @@ Features
 
    .. needtable::
       :filter: "tools/sphinx-codelinks/" in docname and type == "feature"
-      :columns: id, title, si as "SI", parent_needs_back as "Errors"
+      :columns: id, title, si as "SI", parent_needs_back as "Faults"
 
    .. needpie:: Sphinx-CodeLinks features
       :legend:

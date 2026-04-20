@@ -16,8 +16,8 @@ Overall Features: :need_count:`type=="feature"`
    - * Metric
      * Measurement
      * Target
-   - * Safety Features without Errors
-     * :need_count:`type == "feature" and si == "yes" and len(parent_needs_back) == 0` 
+   - * Safety Features without Faults
+     * :need_count:`type == "feature" and si == "yes" and len(parent_needs_back) == 0`
      * 0
    - * Features without Safety Impact value
      * :need_count:`type == "feature" and si == "" and len(parent_needs_back) == 0`
@@ -26,7 +26,7 @@ Overall Features: :need_count:`type=="feature"`
      * :need_count:`type == "feature" and len(features_back) == 0`
      * \-
 
-.. dropdown:: Features without Errors
+.. dropdown:: Features without Faults
 
    .. needtable::
       :columns: id, title, tools
@@ -44,9 +44,9 @@ Overall Features: :need_count:`type=="feature"`
       :columns: id, title, si, tools
       :filter: type == "feature" and len(features_back) == 0
 
-Errors
+Faults
 ------
-Overall Errors: :need_count:`type=="fault"`
+Overall Faults: :need_count:`type=="fault"`
 
 .. list-table::
    :align: center
@@ -57,11 +57,11 @@ Overall Errors: :need_count:`type=="fault"`
    - * Metric
      * Measurement
      * Target
-   - * Errors without Mitigation
+   - * Faults without Mitigation
      * :need_count:`type == "fault" and len(avoids_back) == 0`
      * 0
 
-.. dropdown:: Errors without Mitigation
+.. dropdown:: Faults without Mitigation
 
    .. needtable::
       :columns: id, title, parent_needs
@@ -80,11 +80,11 @@ Overall Restrictions: :need_count:`type=="restriction"`
    - * Metric
      * Measurement
      * Target
-   - * Restrictions without Error
+   - * Restrictions without Fault
      * :need_count:`type == "restriction" and len(avoids) == 0`
      * 0
 
-.. dropdown:: Restrictions without Error
+.. dropdown:: Restrictions without Fault
 
    .. needtable::
       :columns: id, title, docname

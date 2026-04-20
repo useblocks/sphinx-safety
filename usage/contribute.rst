@@ -27,7 +27,7 @@ This classification documentation focuses on the blue elements:
 
 * Use cases
 * Features
-* Errors
+* Faults
 * Restrictions
 * Tools
 
@@ -82,7 +82,7 @@ are marked with a green circle.
       -TD: integer
       ..Links..
       +tools <<tool>>
-      -child needs <<error>>
+      -child needs <<fault>>
       +inputs <<artifact>>
       +outputs <<artifact>>
    }
@@ -105,7 +105,7 @@ are marked with a green circle.
       +status: string
       __Specific__
       ..Links..
-      +avoids <<error>>
+      +avoids <<fault>>
    }
 
    uc -> fe
@@ -149,12 +149,12 @@ and indicates whether the ``use case`` has a safety-relevant impact:
    that the target documentation is the single source of truth for a high
    safety critical project.
 
-The **Tool Error Detection (TD)** value must be defined for each ``error``
-and represents the ability to detect the error:
+The **Tool Error Detection (TD)** value must be defined for each ``fault``
+and represents the ability to detect the fault:
 
-- **TD = 1**: The error is detected, and execution stops without
+- **TD = 1**: The fault is detected, and execution stops without
   producing a final result.
-- **TD = 3**: The error is not detected.
+- **TD = 3**: The fault is not detected.
 - **TD = 2**: This value is not used in this document.
 
 The final **Tool Confidence Level (TCL)** is calculated as follows:
@@ -162,7 +162,7 @@ The final **Tool Confidence Level (TCL)** is calculated as follows:
 - If **TI = 1**, then **TCL = 1**, and no further actions are required
   for tool qualification.
 - If **TI = 2**, the highest **TD** value among all linked,
-  safety-relevant features and their errors determines the **TCL**.
+  safety-relevant features and their faults determines the **TCL**.
 - A **tbd** (to  be done) can be set, if the final TCL can onyl be set
   after missing features and co. are added.
 
@@ -183,7 +183,7 @@ handling during the tool qualification process.
      - Yes
    * - TD
      - 1, 3
-     - Error, Feature
+     - Fault, Feature
      - Yes
    * - TCL
      - 1, 2, 3, tbd

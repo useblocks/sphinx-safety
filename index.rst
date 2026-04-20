@@ -49,7 +49,7 @@ Introduction
 
 This documentation provides the necessary information to achieve
 "qualification readiness" for any Sphinx-based project. It includes ``use cases``,
-``features``, ``errors``, and ``restrictions`` represented as `Sphinx-Needs <https://sphinx-needs.com>`__
+``features``, ``faults``, and ``restrictions`` represented as `Sphinx-Needs <https://sphinx-needs.com>`__
 objects.
 
 The classification serves as the foundation for any qualification
