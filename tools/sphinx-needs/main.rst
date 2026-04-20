@@ -4,7 +4,7 @@ Sphinx-Needs
 
 .. tool:: Sphinx-Needs
    :id: TOOL_SN
-   :version: 5.1.0, 4.2.0
+   :version: 8.0.0
    :status: in_progress
 
    Sphinx makes it easy to create intelligent and beautiful
