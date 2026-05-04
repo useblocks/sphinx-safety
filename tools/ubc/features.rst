@@ -5,7 +5,7 @@ Features
 
    .. needtable::
       :filter: "tools/ubc/" in docname and type == "feature"
-      :columns: id, title, si as "SI", parent_needs_back as "Errors"
+      :columns: id, title, si as "SI", parent_needs_back as "Faults"
 
    .. needpie:: ubc features
       :legend:
@@ -78,3 +78,104 @@ Features
 
       Not all types and options, which are represetned in a given needs.json
       file, are known/defined by the ``ubproject.toml`` configuration.
+
+.. feature:: Validate ontology schema (``ubc schema validate``)
+   :id: FE_UBC_SCHEMA_VALIDATE
+   :tools: TOOL_UBC
+   :inputs: ART_SPHINX_RST, ART_UBC_NEEDS_JSON
+   :si: yes
+
+   Runs the same JSON-Schema-based rules that power
+   :need:`FE_SN_SCHEMA_VALIDATION` from the command line, independent
+   of a Sphinx build. This is the primary CI gate for a safety
+   qualification: the same rules that pass during ``sphinx-build``
+   are re-evaluated against the published ``needs.json`` to detect
+   drift.
+
+   .. code-block:: bash
+
+      ubc schema validate
+
+   .. fault:: Schema rules not loaded
+      :id: ER_UBC_SCHEMA_NO_RULES
+
+      ``ubc`` cannot find the schema definitions referenced by
+      ``needs_schema_definitions`` / ``schema_definitions_from_json``
+      and therefore validates against an empty rule set. Exit code is
+      ``0`` and the pipeline passes, but no safety rule is actually
+      enforced.
+
+   .. fault:: Schema rule set diverges from Sphinx-Needs
+      :id: ER_UBC_SCHEMA_DIVERGE
+
+      The version of the schema evaluation engine embedded in ``ubc``
+      differs from the one used by the installed Sphinx-Needs, so a
+      rule accepted in one tool is rejected in the other. The audit
+      artefact becomes ambiguous.
+
+   .. fault:: Safety violation reported only as warning
+      :id: ER_UBC_SCHEMA_EXIT_ZERO
+
+      ``ubc schema validate`` reports violations but returns exit
+      code ``0`` (e.g. severity configured as ``warning`` only). CI
+      does not fail and the safety breach reaches release.
+
+.. feature:: Impact analysis on git changes (``ubc diff git``)
+   :id: FE_UBC_DIFF_GIT
+   :tools: TOOL_UBC
+   :si: yes
+
+   Computes the traceability impact of a git commit / diff using the
+   classified link model. Given a configurable link depth and
+   direction, ``ubc diff git`` reports which needs are transitively
+   affected — essential for change-impact analysis required by ISO
+   26262 tool classification activities.
+
+   .. code-block:: bash
+
+      ubc diff git --depth 3 --direction both
+
+   .. fault:: Impact depth truncates the graph
+      :id: ER_UBC_DIFF_DEPTH_CUT
+
+      The configured ``--depth`` is smaller than the deepest
+      safety-relevant link chain, so the impact report misses
+      affected needs. Downstream reviewers underestimate the change.
+
+   .. fault:: Wrong direction omits incoming impact
+      :id: ER_UBC_DIFF_DIR_WRONG
+
+      ``--direction`` is set to ``outgoing`` only, so needs that
+      depend *on* a modified need (incoming links) are not reported.
+
+   .. fault:: Uncommitted local edits not covered
+      :id: ER_UBC_DIFF_DIRTY
+
+      The diff is computed against HEAD and ignores uncommitted
+      changes in the working tree, which causes the report to
+      under-represent the actual delta being reviewed.
+
+.. feature:: Generate AI-agent skill for the project (``ubc agent-skill``)
+   :id: FE_UBC_AGENT_SKILL
+   :tools: TOOL_UBC
+   :outputs: ART_UBC_NEEDS_JSON
+   :si: no
+
+   Emits a machine-readable description of the project ontology
+   (types, fields, links, schemas) that LLM-based tooling can load
+   to author and review needs deterministically. Because the skill
+   is generated from the same ``ubproject.toml`` that drives the
+   build, agent behaviour stays in sync with the qualified
+   configuration.
+
+   .. code-block:: bash
+
+      ubc agent-skill
+
+   .. fault:: Skill out of sync with qualified configuration
+      :id: ER_UBC_AGENT_SKILL_STALE
+
+      The generated skill is committed once and not refreshed when
+      ``ubproject.toml`` changes. Agents create needs that conflict
+      with the current schema and the build fails later than
+      necessary.

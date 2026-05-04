@@ -24,7 +24,7 @@ Analysis
 
 .. needpie::
    :legend:
-   :labels: Features, Errors, Restrictions, Checks, Steps
+   :labels: Features, Faults, Restrictions, Checks, Steps
    :explode: 0,0,0,0.1,0.1
 
    type == "feature" and "tools/sphinx/" in docname
@@ -35,14 +35,14 @@ Analysis
 
 .. dropdown:: ✅ Compliance statistics
 
-   Features without errors: :need_count:`"tools/sphinx/" in docname and type == "feature" and len(parent_needs_back) == 0`
+   Features without faults: :need_count:`"tools/sphinx/" in docname and type == "feature" and len(parent_needs_back) == 0`
    / :need_count:`"tools/sphinx/" in docname and type == "feature"`
 
-   Errors without a mitigation: :need_count:`"tools/sphinx/" in docname and type == "fault" and (len(avoids_back) == 0 and len(checks_back) == 0)`
+   Faults without a mitigation: :need_count:`"tools/sphinx/" in docname and type == "fault" and (len(avoids_back) == 0 and len(checks_back) == 0)`
    / :need_count:`"tools/sphinx/" in docname and type == "fault"`
 
-   Restrictions without error: :need_count:`"Sphinx" in sections and type == "restriction" and len(avoids) == 0`
+   Restrictions without fault: :need_count:`"Sphinx" in sections and type == "restriction" and len(avoids) == 0`
    / :need_count:`"tools/sphinx/" in docname and type == "restriction"`
 
-   Checks without error: :need_count:`"Sphinx" in sections and type == "check" and len(checks) == 0`
+   Checks without fault: :need_count:`"Sphinx" in sections and type == "check" and len(checks) == 0`
    / :need_count:`"tools/sphinx/" in docname and type == "check"`

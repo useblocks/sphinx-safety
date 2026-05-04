@@ -12,7 +12,7 @@ which includes:
 
 * Additional test cases for Sphinx and Sphinx-Needs.
 * Documentation of ``checks`` and ``process steps``, including links to
-  the ``errors`` described in this document.
+  the ``faults`` described in this document.
 * A license for ``ubCode`` and its command-line tool ``ubc``, enabling
   specific checks in VS Code and CI environments.
 * A Qualification Report generator to document the final qualification

@@ -39,25 +39,74 @@ transition_length = 10
 build_json = true
 
 # Additional options, which shall be available for all need types.
-# see https://sphinx-needs.readthedocs.io/en/latest/configuration.html#needs-extra-options
-extra_options = [
-    "impact",
-    "owner",
-    "probability",
-    "result",
-    "risklevel",
-    "version",
-    "ti",
-    "si",
-    "td",
-    "tcl",
-    "priority",
-    "company",
-    "department",
-    "email",
-    "url",
-    
-]
+# Migrated to the typed field form introduced with Sphinx-Needs 7+
+# see https://sphinx-needs.readthedocs.io/en/latest/configuration.html#needs-fields
+# Each [needs.fields.<name>] table defines one extra field; optional
+# ``schema`` entries enable JSON-Schema validation (types, enums, ranges).
+
+[needs.fields.impact]
+description = "Qualitative impact of a fault (e.g. low, medium, high)"
+schema.type = "string"
+
+[needs.fields.owner]
+description = "Owner or maintainer of the need"
+schema.type = "string"
+
+[needs.fields.probability]
+description = "Qualitative probability of occurrence (e.g. low, medium, high)"
+schema.type = "string"
+
+[needs.fields.result]
+description = "Evaluation result of a check or test"
+schema.type = "string"
+
+[needs.fields.risklevel]
+description = "Derived risk level from impact and probability"
+schema.type = "string"
+
+[needs.fields.version]
+description = "Version string of the classified tool or artifact"
+schema.type = "string"
+
+[needs.fields.ti]
+description = "Tool Impact (TI) according to ISO 26262-8:2018, clause 11"
+schema.type = "string"
+schema.enum = ["1", "2", "tbd"]
+
+[needs.fields.si]
+description = "Safety Impact flag (yes|no|<empty> for undetermined)"
+schema.type = "string"
+schema.enum = ["yes", "no", ""]
+
+[needs.fields.td]
+description = "Tool error Detection (TD) according to ISO 26262-8:2018, clause 11"
+schema.type = "string"
+schema.enum = ["1", "2", "3", "tbd"]
+
+[needs.fields.tcl]
+description = "Tool Confidence Level (TCL) according to ISO 26262-8:2018, clause 11"
+schema.type = "string"
+schema.enum = ["1", "2", "3", "tbd"]
+
+[needs.fields.priority]
+description = "Priority of the use case / feature"
+schema.type = "string"
+
+[needs.fields.company]
+description = "Organisation owning the classified artefact"
+schema.type = "string"
+
+[needs.fields.department]
+description = "Department within the organisation"
+schema.type = "string"
+
+[needs.fields.email]
+description = "Contact email address"
+schema.type = "string"
+
+[needs.fields.url]
+description = "External reference URL"
+schema.type = "string"
 
 # Force the author to set an ID by hand.
 # Otherwise Sphinx-Needs would create one based on the Need title.
@@ -81,47 +130,25 @@ id_regex = "[A-Z_]{3,10}(_[\\d]{1,3})*"
 # collapse = { "default" = "False" } # The meta-area of all Sphinx-Needs objects shall be hidden.
 
 # collapse-bug in Sphinx-Needs
-# [needs.global_options.collapse]
+# [needs.fields.collapse]
 # default = true
 
-[needs.global_options.style]
+# Per-type default rendering style for the built-in ``style`` field.
+# Moved from the deprecated ``needs_global_options`` to ``needs_fields``
+# (SN 7+, ``needs_global_options`` is deprecated and will be removed).
+[needs.fields.style]
+description = "Visual rendering style used by needflow / need tables"
+schema.type = "string"
 predicates = [
-  [
-    "type in ['usecase']",
-    "purple_bar",
-  ],
-  [
-    "type in ['feature']",
-    "green_bar",
-  ],
-  [
-    "type in ['error']",
-    "red_bar",
-  ],
-  [
-    "type in ['tool']",
-    "blue_bar",
-  ],
-  [
-    "type in ['check']",
-    "pink_bar",
-  ],
-  [
-    "type in ['restriction']",
-    "orange_bar",
-  ],
-  [
-    "type in ['step']",
-    "gray_bar",
-  ],
-  [
-    "type in ['artifact']",
-    "tropical_bar",
-  ],
-  [
-    "type in ['test']",
-    "black_bar",
-  ],
+  [ "type in ['usecase']",     "purple_bar"   ],
+  [ "type in ['feature']",     "green_bar"    ],
+  [ "type in ['fault']",       "red_bar"      ],
+  [ "type in ['tool']",        "blue_bar"     ],
+  [ "type in ['check']",       "pink_bar"     ],
+  [ "type in ['restriction']", "orange_bar"   ],
+  [ "type in ['step']",        "gray_bar"     ],
+  [ "type in ['artifact']",    "tropical_bar" ],
+  [ "type in ['test']",        "black_bar"    ],
 ]
 
 # List of need type used in the documentation.
@@ -203,9 +230,12 @@ prefix = "STEP_"
 color = "#777777"
 style = "rectangle"
 
-[[needs.extra_links]]
+# Link types migrated from [[needs.extra_links]] (deprecated in SN 7+)
+# to the new dict form [needs.links.<name>]
+# see https://sphinx-needs.readthedocs.io/en/latest/configuration.html#needs-links
+
+[needs.links.uses]
 # project --> usecase
-option = "uses"
 incoming = "used_by"
 outgoing = "uses"
 copy = false
@@ -214,9 +244,8 @@ style_part = "thickness=1,#00AA00"
 style_start = "-"
 style_end = "->"
 
-[[needs.extra_links]]
+[needs.links.member_of]
 # responsible --> project
-option = "member_of"
 incoming = "has_member"
 outgoing = "member_of"
 copy = false
@@ -225,9 +254,8 @@ style_part = "thickness=1,#00AA00"
 style_start = "-"
 style_end = "->"
 
-[[needs.extra_links]]
+[needs.links.inputs]
 # usecase/feature --> artifact
-option = "inputs"
 incoming = "needed by"
 outgoing = "inputs"
 copy = false
@@ -237,9 +265,8 @@ style_start = "<-"
 style_end = "-"
 style_reverse = true
 
-[[needs.extra_links]]
+[needs.links.outputs]
 # usecase/feature --> artifact
-option = "outputs"
 incoming = "provided_by"
 outgoing = "outputs"
 copy = false
@@ -248,9 +275,8 @@ style_part = "thickness=1,#0000AA"
 style_start = "-"
 style_end = "->"
 
-[[needs.extra_links]]
-# usecase/feature --> error
-option = "raises"
+[needs.links.raises]
+# usecase/feature --> fault
 incoming = "raised_by"
 outgoing = "raises"
 copy = false
@@ -259,74 +285,63 @@ style_part = "thickness=1,#FF3333"
 style_start = "-"
 style_end = "->"
 
-[[needs.extra_links]]
+[needs.links.features]
 # usecase --> feature, features --> restriction
-option = "features"
 incoming = "featured by"
 outgoing = "features"
 copy = false
 style = "#Gold"
 style_part = "#Gold"
 
-[[needs.extra_links]]
+[needs.links.tools]
 # feature -> tools
-option = "tools"
 incoming = "part of"
 outgoing = "tools"
 copy = false
 style = "#333333"
 style_part = "#333333"
 
-[[needs.extra_links]]
-option = "tool"
+[needs.links.tool]
 incoming = "contains"
 outgoing = "tool"
 copy = false
 style = "#333333"
 style_part = "#333333"
 
-[[needs.extra_links]]
+[needs.links.requires_unsafe]
 # usecase --> feature, features --> restriction
-option = "requires_unsafe"
 incoming = "unsafe required by"
 outgoing = "requires unsafe"
 copy = false
 style = "#Gold"
 style_part = "#Gold"
 
-[[needs.extra_links]]
-# restriction --> error
-option = "avoids"
+[needs.links.avoids]
+# restriction --> fault
 incoming = "avoided by"
 outgoing = "avoids"
 copy = false
 style = "#FA8072"
 style_part = "#FA8072"
 
-
-[[needs.extra_links]]
-#  check -> error, check --> restriction
-option = "checks"
+[needs.links.checks]
+#  check -> fault, check --> restriction
 incoming = "checked by"
 outgoing = "checks"
 copy = false
 style = "#FA8072"
 style_part = "#FA8072"
 
-
-[[needs.extra_links]]
-# test --> error
-option = "errors"
+[needs.links.errors]
+# test --> fault
 incoming = "tests"
 outgoing = "errors"
 copy = false
 style = "#FA8072"
 style_part = "#FA8072"
 
-
-[[needs.extra_links]]
+[needs.links.responsible]
 # usecase --> responsible
-option = "responsible"
 incoming = "responsible for"
 outgoing = "responsible"
 copy = false

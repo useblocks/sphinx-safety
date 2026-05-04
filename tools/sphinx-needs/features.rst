@@ -5,7 +5,7 @@ Features
 
    .. needtable::
       :filter: "tools/sphinx-needs/" in docname and type == "feature"
-      :columns: id, title, si as "SI", parent_needs_back as "Errors"
+      :columns: id, title, si as "SI", parent_needs_back as "Faults"
 
    .. needpie:: Sphinx-Needs features
       :legend:
@@ -243,19 +243,31 @@ Core Need Object
           dict(directive="test", title,"Test Case", prefix="T_", color="#DCFED2"),
       ]
 
-.. feature:: Customizable need options
+.. feature:: Customizable need fields
    :id: FE_SPHINX_NEEDS_CUSTOMIZABLE_OPTIONS
    :tools: TOOL_SN
    :si: yes
 
-   Define extra options that any need object can have, such as 'author'
-   or 'component'. These custom options can be displayed in tables and
-   used for filtering.
+   Define extra fields that any need object can have, such as ``author``
+   or ``component``. Custom fields can be displayed in tables, used for
+   filtering, and (since Sphinx-Needs 7) validated by an attached JSON
+   Schema.
 
-   .. code-block:: python
+   The legacy list-style ``needs_extra_options`` configuration is
+   deprecated; declarative ``needs_fields`` (``[needs.fields.<name>]``
+   in ``ubproject.toml``) is the supported form.
 
-      # In conf.py
-      needs_extra_options = ['author', 'component']
+   .. code-block:: toml
+
+      # In ubproject.toml
+      [needs.fields.author]
+      description = "Author of the need"
+      schema.type = "string"
+
+      [needs.fields.component]
+      description = "Logical sub-system the need belongs to"
+      schema.type = "string"
+      schema.enum = ["UI", "Backend", "Database"]
 
    .. code-block:: rst
 
@@ -264,23 +276,25 @@ Core Need Object
          :author: John Doe
          :component: UI
 
-   .. fault:: Invalid option used in a need
+   .. fault:: Invalid field used in a need
       :id: ER_SN_INVALID_OPTION
 
-      If an option is not defined in the configuration, Sphinx-Needs will
-      raise an error during the build process.
+      A field that is not defined in ``needs_fields`` is used in a
+      directive. Sphinx-Needs raises a warning during the build.
 
-   .. fault:: Option value is not valid
+   .. fault:: Field value does not match declared schema
       :id: ER_SN_INVALID_OPTION_VALUE
 
-      If an option value does not match the expected format or type, Sphinx-Needs
-      will raise an error during the build process.
+      A field value does not match the declared ``schema.type``,
+      ``schema.enum``, ``schema.minimum`` / ``maximum`` or ``schema.pattern``.
+      Sphinx-Needs emits a ``sn_schema_violation`` during the build.
 
-   .. fault:: Option value is not allowed
+   .. fault:: Field value is not allowed
       :id: ER_SN_OPTION_NOT_ALLOWED
 
-      If an option value is not allowed by the configuration, Sphinx-Needs will
-      raise an error during the build process.
+      A field value is not part of the allowed ``schema.enum`` list.
+      Without schema validation the wrong value silently reaches the
+      exported ``needs.json`` and downstream analysis.
 
 .. feature:: Customizable link types
    :id: FE_SPHINX_NEEDS_CUSTOMIZABLE_LINKS
@@ -288,35 +302,38 @@ Core Need Object
    :si: yes
 
    Define different types of links between needs to represent various
-   relationships. This helps to create a precise traceability model.
+   relationships. This is the foundation of a precise traceability
+   model.
 
-   .. code-block:: python
+   The legacy ``needs_extra_links`` list form is deprecated since
+   Sphinx-Needs 7; link types are declared as ``needs_links`` dicts
+   (``[needs.links.<name>]`` in ``ubproject.toml``) and can carry an
+   optional ``schema`` block for cardinality / typing constraints.
 
-      # In conf.py
-      needs_extra_links = [
-          {
-              "option": "verifies",
-              "incoming": "verified by",
-              "outgoing": "verifies",
-          },
-          {
-              "option": "implements",
-              "incoming": "implemented by",
-              "outgoing": "implements",
-          }
-      ]
+   .. code-block:: toml
+
+      # In ubproject.toml
+      [needs.links.verifies]
+      incoming = "verified by"
+      outgoing = "verifies"
+      schema.minItems = 1          # every need using :verifies: must link at least one target
+
+      [needs.links.implements]
+      incoming = "implemented by"
+      outgoing = "implements"
 
    .. fault:: Invalid link type used in a need
       :id: ER_SN_INVALID_LINK_TYPE
 
-      If a link type is not defined in the configuration, Sphinx-Needs will
-      raise an error during the build process.
+      A link option is used in a directive that is not declared in
+      ``needs_links``. Sphinx-Needs raises a warning during the build.
 
-   .. fault:: Link type value is not valid
+   .. fault:: Link target value violates link schema
       :id: ER_SN_INVALID_LINK_TYPE_VALUE
 
-      If a link type value does not match the expected format or type, Sphinx-Needs
-      will raise an error during the build process.
+      The set of targets assigned to a link field violates the declared
+      ``schema`` (e.g. ``maxItems``, ``minItems``, ``uniqueItems``),
+      leading to an ``sn_schema_violation`` warning.
 
 .. feature:: Automatic ID generation
    :id: FE_SPHINX_NEEDS_AUTO_ID
@@ -645,33 +662,103 @@ Linking and Traceability
 
    .. fault:: Dead link not detected
       :id: ER_SN_DEAD_LINK_NOT_DETECTED
-      
+
 
       If a dead link is not detected, it may lead to missing traceability
       and incorrect documentation.
 
    .. fault:: Dead link false positive
       :id: ER_SN_DEAD_LINK_FALSE_POSITIVE
-      
+
 
       If a dead link is falsely reported, it may lead to unnecessary warnings
       and confusion in the documentation.
 
+.. feature:: Conditional link evaluation (NeedLink, parse_conditions)
+   :id: FE_SN_LINK_CONDITIONS
+   :tools: TOOL_SN
+   :si: yes
+
+   Introduced with Sphinx-Needs 8.0, a link target can carry an
+   inline filter expression
+   (``:links: FEAT_X[status=="done"]``) that is evaluated during the
+   build. Conditional links are represented internally by the
+   structured ``NeedLink`` object, enabling downstream analysis of
+   *which* links are active under *which* conditions.
+
+   A link type opts in via ``parse_conditions = true`` in its
+   ``[needs.links.<name>]`` entry.
+
+   .. code-block:: toml
+
+      [needs.links.verifies]
+      incoming = "verified by"
+      outgoing = "verifies"
+      parse_conditions = true
+
+   .. code-block:: rst
+
+      .. test:: Integration test for login feature
+         :id: T_LOGIN
+         :verifies: FE_LOGIN[status=="released"]
+
+   .. fault:: Condition expression parse error
+      :id: ER_SN_LINK_COND_PARSE
+
+      The expression inside the link condition is syntactically
+      invalid or references an undefined field. Sphinx-Needs reports
+      a warning, but if the warning is ignored the link is dropped
+      from the traceability, silently reducing coverage.
+
+   .. fault:: Condition evaluates to the wrong result
+      :id: ER_SN_LINK_COND_EVAL_WRONG
+
+      The predicate references a mutable field (``status``, ``tags``)
+      whose value changes between the authoring and audit state of
+      the documentation. The evaluated link set therefore differs
+      from the one intended by the author.
+
+   .. fault:: Condition hides a safety-relevant link
+      :id: ER_SN_LINK_COND_HIDES_SAFE
+
+      A conditional filter excludes a link that should be active for
+      safety reasons (e.g. a test verifying a fault is conditioned on
+      ``status == "released"`` but the fault is already safety-
+      relevant in earlier states). Coverage reports under-represent
+      the traceability.
+
+   .. fault:: Condition opt-in missing
+      :id: ER_SN_LINK_COND_NOT_PARSED
+
+      The link type is used with an inline condition, but
+      ``parse_conditions = true`` is not set on the
+      ``[needs.links.<name>]`` entry. The bracket expression is
+      treated as part of the target ID, leading to a dead link or an
+      unintended target.
+
 Automated Features
 ++++++++++++++++++
 
-.. feature:: Constraint checking to validate need relationships
+.. feature:: Legacy constraint checking (needs_constraints)
    :id: FE_SPHINX_NEEDS_DYNAMIC_CONSTRAINTS
    :tools: TOOL_SN
    :si: yes
 
-   Define rules, or constraints, about your need data that are checked
-   during the build. For example, you can enforce that every requirement
-   must be linked to a test case.
+   .. warning::
+
+      ``needs_constraints`` is the **legacy** mechanism to validate need
+      data through Python check-code strings. Since Sphinx-Needs 7 it
+      is superseded by :need:`FE_SN_SCHEMA_VALIDATION` (JSON-Schema
+      based) which is declarative, cacheable, and auditable.
+      New classifications **should not** rely on ``needs_constraints``.
+
+   Define rules about your need data that are checked during the
+   build. For example, you can enforce that every requirement must be
+   linked to a test case.
 
    .. code-block:: python
 
-      # In conf.py
+      # Legacy form in conf.py (avoid for new projects)
       needs_constraints = {
           "req_verified": {
               "check_code": "len(links_back['verifies']) > 0",
@@ -700,7 +787,7 @@ Automated Features
 
    .. fault:: Constraint check runs with incomplete data
       :id: ER_SN_CONSTRAINT_INCOMPLETE_DATA
-      
+
 
       If a constraint check runs with incomplete data, it may lead to
       missing or incorrect traceability data and errors in the documentation.
@@ -710,6 +797,194 @@ Automated Features
 
       If a constraint check runs with invalid data, it may lead to errors in
       the documentation or incorrect traceability.
+
+.. feature:: Declarative schema validation of needs
+   :id: FE_SN_SCHEMA_VALIDATION
+   :tools: TOOL_SN
+   :si: yes
+
+   Introduced with Sphinx-Needs 7 and hardened in 8.0, schema
+   validation expresses data rules declaratively using a JSON-Schema
+   derived format. Rules are defined once, evaluated per build, and
+   produce structured diagnostics that downstream tools (ubCode,
+   ``ubc schema validate``, CI) can consume.
+
+   A schema object consists of three parts:
+
+   * ``select`` — which needs the rule applies to
+     (types, fields, combinations).
+   * ``validate.local`` — property constraints on a single need
+     (type, enum, pattern, min / max, required).
+   * ``validate.network`` — cross-need constraints along link types
+     (``contains``, ``minContains``, ``maxContains``), enabling
+     traceability completeness checks (e.g. "every safe feature must
+     have at least one test").
+   * ``severity`` — ``violation`` (build fails), ``warning`` or
+     ``info``.
+
+   Safety-critical projects (ISO 26262, IEC 61508, EN 50716) use the
+   ``violation`` severity to make an incomplete classification
+   reject the build.
+
+   .. code-block:: toml
+
+      # In ubproject.toml
+      schema_definitions_from_json = "schemas.json"
+      schema_debug_active = true
+
+   .. code-block:: json
+
+      {
+        "$defs": {
+          "type-feature": { "properties": { "type": { "const": "feature" } } },
+          "safe-feature": {
+            "allOf": [
+              { "$ref": "#/$defs/type-feature" },
+              { "properties": { "si": { "const": "yes" } },
+                "required": ["si"] }
+            ]
+          }
+        },
+        "schemas": [
+          {
+            "id": "safe-feature-has-fault",
+            "severity": "violation",
+            "message": "A safety-impacting feature must raise at least one fault",
+            "select": { "$ref": "#/$defs/safe-feature" },
+            "validate": {
+              "network": {
+                "raises": { "contains": { "local": {} }, "minContains": 1 }
+              }
+            }
+          }
+        ]
+      }
+
+   .. fault:: Schema validation silently disabled
+      :id: ER_SN_SCHEMA_DISABLED
+
+      ``needs_schema_validation_enabled`` is set to ``False`` (or
+      implicitly disabled by a configuration error) without the
+      project being aware. Safety-relevant rules are not enforced
+      during the build.
+
+   .. fault:: Schema definition itself is invalid
+      :id: ER_SN_SCHEMA_INVALID
+
+      The supplied ``needs_schema_definitions`` (or external
+      ``schema_definitions_from_json``) does not conform to the
+      JSON-Schema dialect accepted by Sphinx-Needs. Rules are not
+      evaluated and the project silently loses validation coverage.
+
+   .. fault:: Schema ``select`` does not match the intended needs
+      :id: ER_SN_SCHEMA_SELECT_WRONG
+
+      The ``select`` filter of a rule is too narrow or too broad,
+      so the rule either misses safety-relevant needs (false negative)
+      or fires on unrelated needs (false positive).
+
+   .. fault:: Schema violation not surfaced in build
+      :id: ER_SN_SCHEMA_NOT_REPORTED
+
+      A failing schema rule does not produce a user-visible warning
+      or error (e.g. because the category is listed in
+      ``suppress_warnings`` or ``-W`` is not used). The build appears
+      green although safety rules are violated.
+
+   .. fault:: Schema violation wrongly suppressed via severity
+      :id: ER_SN_SCHEMA_WRONG_SEVERITY
+
+      A rule is declared with ``severity = "info"`` or ``"warning"``
+      although it encodes a safety-relevant invariant. The violation
+      does not fail the build.
+
+   .. fault:: Network validation misses indirect links
+      :id: ER_SN_SCHEMA_NETWORK_MISS
+
+      A ``validate.network`` rule expects linkage via a specific
+      ``needs.links.<name>``, but the project uses a different link
+      option for the same semantic relation, so the check silently
+      passes with zero matches.
+
+.. feature:: Typed need fields with JSON-Schema validation
+   :id: FE_SN_TYPED_FIELDS
+   :tools: TOOL_SN
+   :si: yes
+
+   Each custom field declared via ``[needs.fields.<name>]`` can carry
+   a ``schema`` block (``type``, ``enum``, ``minimum`` / ``maximum``,
+   ``pattern``, ``format``) and a ``nullable`` flag. Value mismatches
+   are reported as ``sn_schema_violation`` warnings and written to
+   ``schema_violations.json`` in the build output.
+
+   This is the type-safe successor to the untyped string list form of
+   ``needs_extra_options``.
+
+   .. code-block:: toml
+
+      [needs.fields.asil]
+      description = "Automotive Safety Integrity Level (ISO 26262)"
+      schema.type = "string"
+      schema.enum = ["QM", "A", "B", "C", "D"]
+
+      [needs.fields.efforts]
+      description = "FTE days"
+      schema.type = "integer"
+      schema.minimum = 0
+      schema.maximum = 100
+
+   .. fault:: Schema type mismatch not detected
+      :id: ER_SN_TYPED_FIELD_TYPE_MISS
+
+      An integer-typed field receives a non-numeric value but the
+      violation is not reported (e.g. schema validation disabled or
+      category suppressed).
+
+   .. fault:: Enum constraint not enforced
+      :id: ER_SN_TYPED_FIELD_ENUM_MISS
+
+      A value outside the declared ``schema.enum`` list is accepted
+      silently, so an invalid ASIL / TCL value reaches the exported
+      ``needs.json``.
+
+   .. fault:: Range constraint not enforced
+      :id: ER_SN_TYPED_FIELD_RANGE_MISS
+
+      A value violates ``schema.minimum`` / ``schema.maximum`` but is
+      accepted. Safety metrics derived from this field are wrong.
+
+.. feature:: Typed link schemas (cardinality and targeting)
+   :id: FE_SN_TYPED_LINK_SCHEMA
+   :tools: TOOL_SN
+   :si: yes
+
+   ``[needs.links.<name>]`` supports a ``schema`` block that
+   constrains the array of link targets (``minItems``, ``maxItems``,
+   ``uniqueItems``). Combined with
+   :need:`FE_SN_SCHEMA_VALIDATION` ``validate.network`` rules this
+   expresses completeness constraints (e.g. "every fault must be
+   mitigated by at least one restriction or check").
+
+   .. code-block:: toml
+
+      [needs.links.avoids]
+      incoming = "avoided by"
+      outgoing = "avoids"
+      schema.minItems = 1
+
+   .. fault:: Link cardinality not enforced
+      :id: ER_SN_TYPED_LINK_CARD_MISS
+
+      A need uses a typed link without meeting the ``minItems`` /
+      ``maxItems`` constraint, but the violation is not reported.
+      Traceability completeness is silently broken.
+
+   .. fault:: Typed link accepts wrong target type
+      :id: ER_SN_TYPED_LINK_TARGET_WRONG
+
+      A ``validate.network`` rule on a link does not fully constrain
+      the target type, so a link intended to point at e.g. a
+      ``fault`` can target an unrelated type.
 
 Configuration & Customization
 +++++++++++++++++++++++++++++
@@ -795,6 +1070,40 @@ Exporting & Reporting
 
       If the exported needs.json file is corrupted, it may lead to errors in
       the documentation or incorrect traceability.
+
+.. feature:: Link conditions exported to needs.json
+   :id: FE_SN_JSON_LINK_CONDITIONS
+   :tools: TOOL_SN
+   :si: yes
+
+   Added in Sphinx-Needs 8.0, ``needs_json_include_link_conditions``
+   (default ``True``) controls whether link-condition expressions are
+   included in the exported outgoing link fields of ``needs.json``.
+   When enabled, downstream analysis tools (``ubc build
+   validate-json``, audit scripts) can reason about the exact set of
+   targets under each condition.
+
+   .. code-block:: toml
+
+      [needs]
+      build_json = true
+      json_include_link_conditions = true
+
+   .. fault:: Link conditions missing in needs.json
+      :id: ER_SN_JSON_LINK_COND_MISSING
+
+      ``needs_json_include_link_conditions`` is disabled, so
+      downstream tools see only the target IDs. Conditional filtering
+      is lost from the audit artefact and cannot be reproduced from
+      ``needs.json`` alone.
+
+   .. fault:: Exported link conditions differ from runtime evaluation
+      :id: ER_SN_JSON_LINK_COND_DRIFT
+
+      The exported condition string is out of sync with the
+      condition evaluated during the build (e.g. because
+      post-processing rewrote fields). The JSON artefact misrepresents
+      the state of traceability.
 
 .. feature:: Permalink generation to specific need objects
    :id: FE_SPHINX_NEEDS_EXPORT_PERMALINKS

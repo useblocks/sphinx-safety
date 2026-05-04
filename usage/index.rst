@@ -49,22 +49,22 @@ Use cases are stored in the ``/use_cases`` folder.
 
       The documentation is used as part of an official release delivery.
 
-Features & Errors
+Features & Faults
 +++++++++++++++++
 
 A feature describes a specific functionality of a tool. During its
-execution, certain errors may occur, which are documented as sub-needs
+execution, certain faults may occur, which are documented as sub-needs
 within the feature.
 
-An important attribute of both features and errors is the Tool Error
-Detection level (``TD``), which indicates how well an error can be
-detected: - **TD = 1**: The error is detected, and execution stops
-without producing a final result. - **TD = 2**: The error is reported,
-but execution continues. - **TD = 3**: The error occurs silently
+An important attribute of both features and faults is the Tool Error
+Detection level (``TD``), which indicates how well a fault can be
+detected: - **TD = 1**: The fault is detected, and execution stops
+without producing a final result. - **TD = 2**: The fault is reported,
+but execution continues. - **TD = 3**: The fault occurs silently
 without detection.
 
 The feature's ``TD`` value is determined by the "worst" TD level of
-all its related errors.
+all its related faults.
 
 Features are stored in tool-specific folders, such as ``/tools/sphinx/``.
 
@@ -80,11 +80,11 @@ Features are stored in tool-specific folders, such as ``/tools/sphinx/``.
       Read Traceability objects from rst/md files
       into the internal storage.
 
-      .. fault:: Syntax errors in rst/md files     <- A first error with title
+      .. fault:: Syntax errors in rst/md files     <- A first fault with title
          :id: ER_SN_SYN_ER                         <- Unique ID
          :td: 1                                    <- Tool Error Detection level
 
-      .. fault:: Missing external needs.json file  <- A second error with title
+      .. fault:: Missing external needs.json file  <- A second fault with title
          :id: ER_SN_JSON_NOT_FOUND                 <- Unique ID
          :td: 3                                    <- Tool Error Detection level
 
@@ -93,9 +93,9 @@ Features are stored in tool-specific folders, such as ``/tools/sphinx/``.
 Restrictions
 ++++++++++++
 
-Restrictions define ways to avoid specific errors, such as by not
+Restrictions define ways to avoid specific faults, such as by not
 using certain functions or configurations. They are linked to one or
-more errors.
+more faults.
 
 During tool execution, compliance with restrictions should be checked
 automatically or through a manual process.
@@ -106,7 +106,7 @@ automatically or through a manual process.
 
    .. restriction:: Do not use dynamic functions      <- Title
       :id: CHECK_SN_NO_DYN                            <- Unique ID
-      :avoids: ER_SN_DYN_INVALID, ER_SN_DYN_WRONG     <- Links to errors
+      :avoids: ER_SN_DYN_INVALID, ER_SN_DYN_WRONG     <- Links to faults
 
       Dynamic functions can execute unqualified code,
       which has full access to all Sphinx-Needs data.
@@ -117,10 +117,10 @@ Checks
 
 Checks are responsible for the following tasks:
 
-* Verifying if an error has occurred.
+* Verifying if a fault has occurred.
 * Ensuring that a restriction has been followed.
 
-Like restrictions, checks are linked to errors and are often
+Like restrictions, checks are linked to faults and are often
 implemented as additional scripts executed during tool execution in a
 CI system.
 
