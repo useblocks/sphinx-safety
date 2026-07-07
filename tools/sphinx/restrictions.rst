@@ -11,6 +11,7 @@ Restrictions
 
 .. restriction:: Clean full build
    :id: RE_SPHINX_CLEAN
+   :avoids: ER_SPH_STALE_BUILD
 
    Always use a **clean** and **full** sphinx-build. An incremental build
    is not allowed, as not all files get updated by Sphinx.

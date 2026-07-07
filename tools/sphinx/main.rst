@@ -38,7 +38,7 @@ Analysis
    Features without faults: :need_count:`"tools/sphinx/" in docname and type == "feature" and len(parent_needs_back) == 0`
    / :need_count:`"tools/sphinx/" in docname and type == "feature"`
 
-   Faults without a mitigation: :need_count:`"tools/sphinx/" in docname and type == "fault" and (len(avoids_back) == 0 and len(checks_back) == 0)`
+   Faults without a mitigation: :need_count:`"tools/sphinx/" in docname and type == "fault" and (len(avoids_back) == 0 and len(checks_back) == 0 and len(detects_back) == 0)`
    / :need_count:`"tools/sphinx/" in docname and type == "fault"`
 
    Restrictions without fault: :need_count:`"Sphinx" in sections and type == "restriction" and len(avoids) == 0`
@@ -46,3 +46,6 @@ Analysis
 
    Checks without fault: :need_count:`"Sphinx" in sections and type == "check" and len(checks) == 0`
    / :need_count:`"tools/sphinx/" in docname and type == "check"`
+
+   Passed test executions: :need_count:`"tools/sphinx/" in docname and type == "testresult" and result == "passed"`
+   / :need_count:`"tools/sphinx/" in docname and type == "testresult"`

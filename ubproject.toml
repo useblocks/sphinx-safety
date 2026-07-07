@@ -332,13 +332,21 @@ copy = false
 style = "#FA8072"
 style_part = "#FA8072"
 
-[needs.links.errors]
+[needs.links.detects]
 # test --> fault
 incoming = "tests"
-outgoing = "errors"
+outgoing = "detects"
 copy = false
 style = "#FA8072"
 style_part = "#FA8072"
+
+[needs.links.verifies]
+# test-case (imported result) --> test
+incoming = "verified_by"
+outgoing = "verifies"
+copy = false
+style = "#4CAF50"
+style_part = "#4CAF50"
 
 [needs.links.responsible]
 # usecase --> responsible

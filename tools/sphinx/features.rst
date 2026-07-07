@@ -35,6 +35,12 @@ Features
    .. fault:: Access to files/folders not given
       :id: ER_SPH_WRONG_ACCESS
 
+   .. fault:: Incremental build leaves stale or incomplete output
+      :id: ER_SPH_STALE_BUILD
+
+      An incremental build does not update all affected files, so the
+      output contains stale or inconsistent content.
+
 Inline Text Formatting
 ++++++++++++++++++++++
 
@@ -82,6 +88,12 @@ Inline Text Formatting
    .. code-block:: rst
 
       `Sphinx Documentation <https://www.sphinx-doc.org/en/master/>`__
+
+   .. fault:: Named hyperlink resolves to wrong or broken target
+      :id: ER_SPH_HYPERLINK_BROKEN
+
+      A named hyperlink reference points to a missing or wrong target, so
+      the reader is silently directed to incorrect information.
 
 .. feature:: Inline Internal Target
    :id: FE_SPHINX_INLINE_INTERNAL_TARGET
@@ -241,6 +253,12 @@ Structural Elements
          usage
          contribute
 
+   .. fault:: Document is missing from the toctree
+      :id: ER_SPH_TOCTREE_MISSING
+
+      A document is not included in the generated table of contents, so
+      relevant content is unreachable and may be missed by the reader.
+
 .. feature:: Rubric Directive
    :id: FE_SPHINX_DIRECTIVE_RUBRIC
    :tools: TOOL_SPHINX
@@ -375,6 +393,12 @@ Directives for Content
          :alt: Example image
          :width: 300px
 
+   .. fault:: Image is missing or not copied to the output
+      :id: ER_SPH_IMAGE_MISSING
+
+      A referenced image is not embedded or copied into the build output,
+      so safety-relevant visual information is lost.
+
 .. feature:: Figure Directive
    :id: FE_SPHINX_DIRECTIVE_FIGURE
    :tools: TOOL_SPHINX
@@ -388,6 +412,12 @@ Directives for Content
          :alt: Example image
 
          This is a caption for the figure.
+
+   .. fault:: Figure caption or image is wrong or missing
+      :id: ER_SPH_FIGURE_WRONG
+
+      The figure image is missing or the caption is not associated with
+      the correct figure, so the reader gets misleading information.
 
 .. feature:: Table Directive with Title
    :id: FE_SPHINX_DIRECTIVE_TABLE
@@ -407,6 +437,12 @@ Directives for Content
          Row 2     Data 2
          ========  ========
 
+   .. fault:: Table title or rows are rendered incorrectly
+      :id: ER_SPH_TABLE_WRONG
+
+      The table title is not associated with the table or rows/cells are
+      rendered incorrectly, so tabular information is misrepresented.
+
 .. feature:: Simple Tables
    :id: FE_SPHINX_TABLES_SIMPLE
    :tools: TOOL_SPHINX
@@ -422,6 +458,12 @@ Directives for Content
       Row 1     Data 1
       Row 2     Data 2
       ========  ========
+
+   .. fault:: Simple table cells are misparsed
+      :id: ER_SPH_TABLE_SIMPLE_WRONG
+
+      Cell boundaries of a simple table are detected incorrectly, so cell
+      content is merged, dropped or shifted.
 
 .. feature:: Grid Tables
    :id: FE_SPHINX_TABLES_GRID
@@ -440,6 +482,12 @@ Directives for Content
       | Row 2    | Data 2   |
       +----------+----------+
 
+   .. fault:: Grid table spans are rendered incorrectly
+      :id: ER_SPH_TABLE_GRID_WRONG
+
+      Row or column spans of a grid table are computed incorrectly, so
+      cell content is placed in the wrong position.
+
 .. feature:: CSV Table Directive
    :id: FE_SPHINX_DIRECTIVE_CSV_TABLE
    :tools: TOOL_SPHINX
@@ -452,6 +500,12 @@ Directives for Content
       .. csv-table:: Example CSV Table
          :file: example.csv
          :header-rows: 1
+
+   .. fault:: CSV table content is imported incorrectly
+      :id: ER_SPH_CSV_WRONG
+
+      The CSV source is parsed incorrectly (wrong delimiter, header or
+      row count), so the rendered table does not match the source data.
 
 .. feature:: List Table Directive
    :id: FE_SPHINX_DIRECTIVE_LIST_TABLE
@@ -471,6 +525,12 @@ Directives for Content
            - Data 1
          * - Row 2
            - Data 2
+
+   .. fault:: List table rows or columns are rendered incorrectly
+      :id: ER_SPH_LISTTABLE_WRONG
+
+      The list-table structure is mapped to the wrong number of rows or
+      columns, so tabular information is misrepresented.
 
 .. feature:: Code Block Directive
    :id: FE_SPHINX_DIRECTIVE_CODE_BLOCK
@@ -496,6 +556,12 @@ Directives for Content
 
       .. literalinclude:: example.py
          :language: python
+
+   .. fault:: Wrong content or line range is included
+      :id: ER_SPH_LITINCLUDE_WRONG
+
+      The literalinclude reads the wrong file or line range, so the
+      displayed code does not match the intended source.
 
 .. feature:: Math Directive
    :id: FE_SPHINX_DIRECTIVE_MATH
@@ -532,6 +598,12 @@ Directives for Content
    .. code-block:: rst
 
       .. include:: other_file.rst
+
+   .. fault:: Wrong or missing file is included silently
+      :id: ER_SPH_INCLUDE_WRONG
+
+      The include directive pulls in the wrong file or silently omits
+      content, so parts of the documentation are wrong or missing.
 
 .. feature:: Raw Content Directive
    :id: FE_SPHINX_DIRECTIVE_RAW
@@ -795,6 +867,12 @@ Output and Build System
 
       sphinx-build -b html source/ build/html/
 
+   .. fault:: HTML output is incomplete or incorrect
+      :id: ER_SPH_HTML_WRONG
+
+      The generated HTML does not faithfully represent the source, so
+      content is missing, duplicated or altered in the output.
+
 .. feature:: Single-File HTML Output
    :id: FE_SPHINX_OUTPUT_SINGLE_HTML
    :tools: TOOL_SPHINX
@@ -805,6 +883,12 @@ Output and Build System
    .. code-block:: bash
 
       sphinx-build -b singlehtml source/ build/singlehtml/
+
+   .. fault:: Single-file HTML output is incomplete or incorrect
+      :id: ER_SPH_SINGLEHTML_WRONG
+
+      The single-file HTML omits or reorders content compared to the
+      source, so information is lost in the merged output.
 
 .. feature:: Directory HTML Output
    :id: FE_SPHINX_OUTPUT_DIR_HTML
@@ -817,6 +901,12 @@ Output and Build System
 
       sphinx-build -b dirhtml source/ build/dirhtml/
 
+   .. fault:: Directory HTML output has a wrong structure
+      :id: ER_SPH_DIRHTML_WRONG
+
+      The directory-based HTML output places pages under wrong paths, so
+      links break or content becomes unreachable.
+
 .. feature:: LaTeX Output
    :id: FE_SPHINX_OUTPUT_LATEX
    :tools: TOOL_SPHINX
@@ -827,6 +917,12 @@ Output and Build System
    .. code-block:: bash
 
       sphinx-build -b latex source/ build/latex/
+
+   .. fault:: LaTeX output is incomplete or incorrect
+      :id: ER_SPH_LATEX_WRONG
+
+      The generated LaTeX does not faithfully represent the source, so
+      the resulting PDF misses or alters content.
 
 .. feature:: ePub 3 Output
    :id: FE_SPHINX_OUTPUT_EPUB
@@ -839,9 +935,16 @@ Output and Build System
 
       sphinx-build -b epub source/ build/epub/
 
+   .. fault:: ePub output is incomplete or invalid
+      :id: ER_SPH_EPUB_WRONG
+
+      The generated ePub is invalid or misses content, so the reader
+      cannot access the full documentation.
+
 .. feature:: Man Page Output
    :id: FE_SPHINX_OUTPUT_MANPAGE
    :tools: TOOL_SPHINX
+   :si: no
 
    Generate man page output for your documentation.
 
@@ -852,6 +955,7 @@ Output and Build System
 .. feature:: Plain Text Output
    :id: FE_SPHINX_OUTPUT_TEXT
    :tools: TOOL_SPHINX
+   :si: no
 
    Generate plain text output for your documentation.
 
@@ -862,6 +966,7 @@ Output and Build System
 .. feature:: JSON Output
    :id: FE_SPHINX_OUTPUT_JSON
    :tools: TOOL_SPHINX
+   :si: no
 
    Generate JSON output for your documentation.
 
@@ -872,6 +977,7 @@ Output and Build System
 .. feature:: Gettext Message Catalog Output
    :id: FE_SPHINX_OUTPUT_GETTEXT
    :tools: TOOL_SPHINX
+   :si: no
 
    Generate gettext message catalogs for translations.
 
@@ -882,6 +988,7 @@ Output and Build System
 .. feature:: Built-in HTML Search
    :id: FE_SPHINX_BUILD_HTML_SEARCH
    :tools: TOOL_SPHINX
+   :si: no
 
    Enable built-in search functionality for HTML output.
 
@@ -892,6 +999,7 @@ Output and Build System
 .. feature:: HTML Theming Support
    :id: FE_SPHINX_BUILD_THEMING
    :tools: TOOL_SPHINX
+   :si: no
 
    Customize the appearance of HTML output using themes.
 
@@ -902,6 +1010,7 @@ Output and Build System
 .. feature:: Static File Support
    :id: FE_SPHINX_BUILD_STATIC_FILES
    :tools: TOOL_SPHINX
+   :si: no
 
    Include static files like images, CSS, or JavaScript in your build.
 
