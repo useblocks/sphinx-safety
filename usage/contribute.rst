@@ -33,11 +33,6 @@ This classification documentation focuses on the blue elements:
 
 The remaining elements are part of the :ref:`qualification`.
 
-An example of this data model with real elements is shown below:
-
-.. image:: /_static/contribute_model_example.png
-   :align: center
-
 Each Sphinx-Needs object has several attributes, as illustrated in the
 following class diagram.
 

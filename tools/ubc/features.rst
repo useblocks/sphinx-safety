@@ -198,7 +198,7 @@ Features
 
    .. code-block:: bash
 
-      ubc diff json --against _build/html/needs.json
+      ubc diff json --needs _build/html/needs.json --project my_docs
 
    .. fault:: Divergence not detected (false negative)
       :id: ER_UBC_CROSSCHECK_FALSE_NEG
