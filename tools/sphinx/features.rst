@@ -20,6 +20,7 @@ Features
    :id: FE_SPHINX_READ
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 1
 
    Readin all needed rst/md files for the Sphinx project.
 
@@ -81,6 +82,7 @@ Inline Text Formatting
    :id: FE_SPHINX_INLINE_NAMED_HYPERLINK
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Create a named hyperlink reference to link to external or internal
    resources.
@@ -240,6 +242,7 @@ Structural Elements
    :id: FE_SPHINX_DIRECTIVE_TOCTREE
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use the toctree directive to create a table of contents for your
    documentation.
@@ -384,6 +387,7 @@ Directives for Content
    :id: FE_SPHINX_DIRECTIVE_IMAGE
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use the image directive to include images in your documentation.
 
@@ -403,6 +407,7 @@ Directives for Content
    :id: FE_SPHINX_DIRECTIVE_FIGURE
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use the figure directive to include images with captions.
 
@@ -423,6 +428,7 @@ Directives for Content
    :id: FE_SPHINX_DIRECTIVE_TABLE
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use the table directive to create tables with titles.
 
@@ -447,6 +453,7 @@ Directives for Content
    :id: FE_SPHINX_TABLES_SIMPLE
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use simple tables for basic tabular data.
 
@@ -469,6 +476,7 @@ Directives for Content
    :id: FE_SPHINX_TABLES_GRID
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use grid tables for more complex table layouts.
 
@@ -492,6 +500,7 @@ Directives for Content
    :id: FE_SPHINX_DIRECTIVE_CSV_TABLE
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use the CSV table directive to create tables from CSV files.
 
@@ -511,6 +520,7 @@ Directives for Content
    :id: FE_SPHINX_DIRECTIVE_LIST_TABLE
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use the list table directive to create tables from lists.
 
@@ -549,6 +559,7 @@ Directives for Content
    :id: FE_SPHINX_DIRECTIVE_LITERALINCLUDE
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use the literal include directive to include external code files.
 
@@ -592,6 +603,7 @@ Directives for Content
    :id: FE_SPHINX_DIRECTIVE_INCLUDE
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Use the include directive to include content from other files.
 
@@ -860,6 +872,7 @@ Output and Build System
    :id: FE_SPHINX_OUTPUT_HTML
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Generate HTML output for your documentation.
 
@@ -877,6 +890,7 @@ Output and Build System
    :id: FE_SPHINX_OUTPUT_SINGLE_HTML
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Generate a single HTML file for your documentation.
 
@@ -894,6 +908,7 @@ Output and Build System
    :id: FE_SPHINX_OUTPUT_DIR_HTML
    :tools: TOOL_SPHINX
    :si: yes   
+   :td: 3
 
    Generate HTML output with a directory structure.
 
@@ -911,6 +926,7 @@ Output and Build System
    :id: FE_SPHINX_OUTPUT_LATEX
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Generate LaTeX output for your documentation.
 
@@ -928,6 +944,7 @@ Output and Build System
    :id: FE_SPHINX_OUTPUT_EPUB
    :tools: TOOL_SPHINX
    :si: yes
+   :td: 3
 
    Generate ePub output for your documentation.
 

@@ -108,3 +108,12 @@ html_theme_options = {
     "dark_logo": "logo_sphinx_classification_dark.png",
 }
 html_css_files = ["custom.css"]
+
+
+# -- Custom dynamic functions ------------------------------------------------
+from sphinx_needs.api import add_dynamic_function  # noqa: E402
+from sphinx_safety.needs_functions import calculate_tcl  # noqa: E402
+
+
+def setup(app):
+    add_dynamic_function(app, calculate_tcl)

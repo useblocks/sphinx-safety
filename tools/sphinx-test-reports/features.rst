@@ -19,6 +19,7 @@ Features
    :id: FE_STR_JUNIT_IMPORT
    :tools: TOOL_STR
    :si: yes
+   :td: 3
 
    Parse a JUnit-compatible XML file and make all contained test suites and
    test cases available as Sphinx-Needs objects via the ``test-file`` directive.
@@ -52,6 +53,7 @@ Features
    :id: FE_STR_AUTO_SUITES
    :tools: TOOL_STR
    :si: yes
+   :td: 3
 
    When ``auto_suites`` is set, each ``<testsuite>`` element in the XML
    generates a ``testsuite`` need automatically.
@@ -72,6 +74,7 @@ Features
    :id: FE_STR_AUTO_CASES
    :tools: TOOL_STR
    :si: yes
+   :td: 3
 
    When ``auto_cases`` is set, each ``<testcase>`` element in the XML
    generates a ``testcase`` need automatically with a stable hash-based ID.
@@ -98,6 +101,7 @@ Features
    :id: FE_STR_PROPERTY_LINKS
    :tools: TOOL_STR
    :si: yes
+   :td: 3
 
    JUnit XML ``<property>`` elements with a name declared in
    ``tr_property_link_types`` are turned into outgoing Sphinx-Needs links on
@@ -126,6 +130,7 @@ Features
    :id: FE_STR_CUSTOM_TYPES
    :tools: TOOL_STR
    :si: yes
+   :td: 3
 
    The need type used for imported test cases and test suites can be overridden
    via ``tr_case`` / ``tr_suite`` configuration, e.g. to use a dedicated

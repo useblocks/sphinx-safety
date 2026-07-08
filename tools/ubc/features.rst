@@ -28,6 +28,7 @@ Features
    :id: FE_UBC_FORMAT
    :tools: TOOL_UBC
    :si: yes
+   :td: 3
 
    .. fault:: Format introduces errors
       :id: ER_UBC_FORMAT_ERRORS
@@ -43,6 +44,7 @@ Features
    :inputs: ART_SPHINX_RST
    :outputs: ART_UBC_NEEDS_JSON
    :si: yes
+   :td: 1
 
    .. fault:: Incomplete data
       :id: ER_UBC_JSON_INCOMPLETE
@@ -84,6 +86,7 @@ Features
    :tools: TOOL_UBC
    :inputs: ART_SPHINX_RST, ART_UBC_NEEDS_JSON
    :si: yes
+   :td: 3
 
    Runs the same JSON-Schema-based rules that power
    :need:`FE_SN_SCHEMA_VALIDATION` from the command line, independent
@@ -124,6 +127,7 @@ Features
    :id: FE_UBC_DIFF_GIT
    :tools: TOOL_UBC
    :si: yes
+   :td: 3
 
    Computes the traceability impact of a git commit / diff using the
    classified link model. Given a configurable link depth and
@@ -185,6 +189,7 @@ Features
    :tools: TOOL_UBC
    :inputs: ART_SPHINX_RST, ART_UBC_NEEDS_JSON
    :si: yes
+   :td: 1
 
    Builds a second, independent ``needs.json`` from the same RST sources
    (see :need:`FE_UBC_BUILD_JSON`) and compares it field by field against

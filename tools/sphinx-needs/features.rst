@@ -19,6 +19,7 @@ Features
    :id: FE_SN_READ
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Read Traceability objects from rst/md files into the internal storage.
 
@@ -53,6 +54,7 @@ Features
    :id: FE_SN_CONTENT_RENDER
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    .. fault:: Content contains syntax errors
       :id: ER_SN_CONTENT_SYNTAX
@@ -61,6 +63,7 @@ Features
    :id: FE_SN_SET_META
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    .. fault:: Dynamic functions return invalid meta-data
       :id: ER_SN_DYN_INVALID
@@ -86,6 +89,7 @@ Features
    :id: FE_SN_LINK
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    .. fault:: Back-links are not set
       :id: ER_SN_LINKS_NO_BACK
@@ -118,6 +122,7 @@ Features
    :id: FE_SN_DOCTREE
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    .. fault:: Meta-data missing
       :id: ER_SN_LAY_META_MIS
@@ -134,6 +139,7 @@ Features
    :id: FE_SN_JSON
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    .. fault:: Objects missing in needs.json
       :id: ER_SN_JSON_MIS
@@ -155,6 +161,7 @@ Dynamic Content
    :id: FE_SN_DYN_FUNC
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    .. fault:: Function gets not executed
       :id: ER_SN_DYN_NO_EXEC
@@ -182,6 +189,7 @@ Dynamic Content
    :id: FE_SN_TEMPLATE_PAGE
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    .. fault:: Template file not found
       :id: ER_SN_TEMPLATE_FILE_NOT_FOUND
@@ -204,6 +212,7 @@ Dynamic Content
    :id: FE_SN_TEMPLATE_NEED
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    .. fault:: Template file not found
       :id: ER_SN_TEMPLATE_NEED_FILE_NOT_FOUND
@@ -229,6 +238,7 @@ Core Need Object
    :id: FE_SPHINX_NEEDS_DEFINABLE_TYPES
    :tools: TOOL_SN
    :si: yes
+   :td: 1
 
    Allows the definition of custom need types beyond the built-in ones.
    Each type gets its own directive, title, and color for easy
@@ -247,6 +257,7 @@ Core Need Object
    :id: FE_SPHINX_NEEDS_CUSTOMIZABLE_OPTIONS
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Define extra fields that any need object can have, such as ``author``
    or ``component``. Custom fields can be displayed in tables, used for
@@ -300,6 +311,7 @@ Core Need Object
    :id: FE_SPHINX_NEEDS_CUSTOMIZABLE_LINKS
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Define different types of links between needs to represent various
    relationships. This is the foundation of a precise traceability
@@ -339,6 +351,7 @@ Core Need Object
    :id: FE_SPHINX_NEEDS_AUTO_ID
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Sphinx-Needs can automatically generate a unique ID for any need that
    does not have one. The format of the ID can be configured using a
@@ -377,6 +390,7 @@ Core Need Object
    :id: FE_SPHINX_NEEDS_MANUAL_ID
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Allows for setting a specific, human-readable ID for a need. This is
    useful for referencing important requirements easily.
@@ -408,6 +422,7 @@ Core Need Object
    :id: FE_SPHINX_NEEDS_STATUS_ENFORCEMENT
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    You can define a list of allowed statuses for needs. If a need uses a
    status that is not on the list, Sphinx will raise a warning during the
@@ -433,6 +448,7 @@ Core Need Object
    :id: FE_SPHINX_NEEDS_TAGGING
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Assign one or more tags to a need for categorization and filtering.
    Tags help in organizing needs and creating specific views or reports.
@@ -447,6 +463,7 @@ Core Need Object
    :id: FE_SPHINX_NEEDS_NEED_PARTS
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Create references to specific sentences or parts inside a need's
    content. This allows for very precise linking and traceability.
@@ -467,6 +484,7 @@ Core Need Object
    :id: FE_SPHINX_NEEDS_UNIQUE_ID_ENFORCEMENT
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Sphinx-Needs automatically checks if all manually set IDs are unique
    across the project. The build will fail if a duplicate ID is found,
@@ -545,6 +563,7 @@ Directives for Creating & Displaying Needs
    :id: FE_SPHINX_NEEDS_DIRECTIVE_NEEDIMPORT
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Import need objects from an external ``needs.json`` file. This allows
    for sharing and reusing requirements across different Sphinx projects.
@@ -578,6 +597,7 @@ Directives for Creating & Displaying Needs
    :id: FE_SPHINX_NEEDS_DIRECTIVE_NEEDEXTEND
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Modifies multiple needs at once based on a filter. You can add tags,
    change the status, or set any other option for all filtered needs.
@@ -615,6 +635,7 @@ Linking and Traceability
    :id: FE_SPHINX_NEEDS_LINKING_DIRECT
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Create links between needs by referencing their unique IDs in link
    options. This forms the basis of all traceability in Sphinx-Needs.
@@ -646,6 +667,7 @@ Linking and Traceability
    :id: FE_SPHINX_NEEDS_LINKING_BIDIRECTIONAL
    :tools: TOOL_SN
    :si: yes
+   :td: 1
 
    When you link from need A to need B, Sphinx-Needs automatically knows
    about the incoming link on need B. This allows for full, bidirectional
@@ -655,6 +677,7 @@ Linking and Traceability
    :id: FE_SPHINX_NEEDS_LINKING_DEAD_LINK_DETECTION
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    The Sphinx build will issue a warning if a need links to an ID that
    does not exist. This helps to maintain the integrity of the
@@ -678,6 +701,7 @@ Linking and Traceability
    :id: FE_SN_LINK_CONDITIONS
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Introduced with Sphinx-Needs 8.0, a link target can carry an
    inline filter expression
@@ -743,6 +767,7 @@ Automated Features
    :id: FE_SPHINX_NEEDS_DYNAMIC_CONSTRAINTS
    :tools: TOOL_SN
    :si: yes
+   :td: 1
 
    .. warning::
 
@@ -802,6 +827,7 @@ Automated Features
    :id: FE_SN_SCHEMA_VALIDATION
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Introduced with Sphinx-Needs 7 and hardened in 8.0, schema
    validation expresses data rules declaratively using a JSON-Schema
@@ -910,6 +936,7 @@ Automated Features
    :id: FE_SN_TYPED_FIELDS
    :tools: TOOL_SN
    :si: yes
+   :td: 1
 
    Each custom field declared via ``[needs.fields.<name>]`` can carry
    a ``schema`` block (``type``, ``enum``, ``minimum`` / ``maximum``,
@@ -957,6 +984,7 @@ Automated Features
    :id: FE_SN_TYPED_LINK_SCHEMA
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    ``[needs.links.<name>]`` supports a ``schema`` block that
    constrains the array of link targets (``minItems``, ``maxItems``,
@@ -1002,6 +1030,7 @@ Configuration & Customization
    :id: FE_SPHINX_NEEDS_CONFIG_LAYOUTS
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Change the visual presentation of needs by defining custom layouts.
    You can reorder options, use grids, and change how information is
@@ -1044,6 +1073,7 @@ Exporting & Reporting
    :id: FE_SPHINX_NEEDS_EXPORT_JSON
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Export all need objects and their relationships into a structured ``needs.json``
    file. This file can be used for external analysis, reporting, or
@@ -1075,6 +1105,7 @@ Exporting & Reporting
    :id: FE_SN_JSON_LINK_CONDITIONS
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Added in Sphinx-Needs 8.0, ``needs_json_include_link_conditions``
    (default ``True``) controls whether link-condition expressions are
@@ -1109,6 +1140,7 @@ Exporting & Reporting
    :id: FE_SPHINX_NEEDS_EXPORT_PERMALINKS
    :tools: TOOL_SN
    :si: yes
+   :td: 3
 
    Generate a ``needs.json`` file where each need includes a permalink to
    its location in the HTML documentation. This is useful for linking

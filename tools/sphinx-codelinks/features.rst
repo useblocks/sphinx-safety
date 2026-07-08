@@ -18,6 +18,8 @@ Features
 .. feature:: Define new traceability objects in source code
     :id: FE_SCL_DEF
     :tools: TOOL_SCL
+    :si: yes
+    :td: 1
 
     Create new Sphinx-Needs directly from a single comment line in your source code.
 
@@ -30,6 +32,8 @@ Features
 .. feature:: C Language Support
     :id: FE_SCL_C
     :tools: TOOL_SCL
+    :si: yes
+    :td: 1
 
     Support for defining traceability objects in C source code.
 
@@ -42,6 +46,8 @@ Features
 .. feature:: C++ Language Support
     :id: FE_SCL_CPP
     :tools: TOOL_SCL
+    :si: yes
+    :td: 1
 
     Support for defining traceability objects in C++ source code.
 
@@ -54,6 +60,8 @@ Features
 .. feature:: Python Language Support
     :id: FE_SCL_PY
     :tools: TOOL_SCL
+    :si: yes
+    :td: 1
 
     Support for defining traceability objects in Python source code.
 
@@ -66,6 +74,8 @@ Features
 .. feature:: Customized comment styles
     :id: FE_SCL_CMT
     :tools: TOOL_SCL
+    :si: yes
+    :td: 3
 
     Support for different customized comment styles in source code.
     The comment structure can be defined in the configuration file.
@@ -76,6 +86,8 @@ Features
 .. feature:: Link code to existing need items
     :id: FE_SCL_LNK
     :tools: TOOL_SCL
+    :si: yes
+    :td: 1
 
     Link code to existing need items without creating new ones, perfect for tracing
     implementations to requirements.
@@ -89,6 +101,8 @@ Features
 .. feature:: Extract blocks of reStructuredText embedded within comments
     :id: FE_SCL_RST_EXTRACTION
     :tools: TOOL_SCL
+    :si: yes
+    :td: 1
 
     Extract blocks of reStructuredText embedded within comments, allowing you to
     include rich documentation with associated metadata right next to your code.
@@ -105,6 +119,7 @@ Features
 .. feature:: Analyze marked content via CLI interface
     :id: FE_SCL_CLI_ANALYZE
     :tools: TOOL_SCL
+    :si: no
 
     It shall be possible to analyze marked content via the CLI interface.
 
@@ -120,6 +135,7 @@ Features
 .. feature:: Discover the filepaths a specified root directory via CLI interface
     :id: FE_SCL_CLI_DISCOVER
     :tools: TOOL_SCL
+    :si: no
 
     It shall be possible to specify a root directory for the CLI interface.
     All files in and below this directory shall be discovered.
@@ -135,6 +151,7 @@ Features
 .. feature:: Export marked content to other formats via CLI interface
     :id: FE_SCL_CLI_WRITE
     :tools: TOOL_SCL
+    :si: no
 
     It shall be possible to export marked content to other formats via the CLI interface.
 

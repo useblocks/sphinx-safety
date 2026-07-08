@@ -14,7 +14,7 @@ Requirements
    :tools: TOOL_SPHINX, TOOL_SN, TOOL_UBC
    :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_CONTENT_RENDER, FE_SN_SET_META, FE_SN_LINK
    :ti: 2
-   :tcl: tbd
+   :tcl: [[calculate_tcl()]]
    :priority: 1
    :responsible:
 
@@ -33,7 +33,7 @@ Architectures
    :tools: TOOL_SPHINX, TOOL_SN
    :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_SET_META, FE_SN_LINK, FE_SN_CONTENT_RENDER, FE_SPHINX_NEEDS_DIRECTIVE_NEEDFLOW, FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE
    :ti: 2
-   :tcl: tbd
+   :tcl: [[calculate_tcl()]]
 
    Create documentation to document and track software architecture.
 
@@ -48,7 +48,7 @@ SW APIs
    :tools: TOOL_SPHINX, TOOL_SN
    :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_SET_META, FE_SN_LINK, FE_SN_CONTENT_RENDER, FE_SCL_DEF, FE_SCL_LNK, FE_SCL_C, FE_SCL_CPP, FE_SCL_PY
    :ti: 2
-   :tcl: tbd
+   :tcl: [[calculate_tcl()]]
 
    Create documentation to document and track software detailed design.
 
@@ -63,7 +63,7 @@ Tests
    :tools: TOOL_SPHINX, TOOL_SN
    :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_SET_META, FE_SN_LINK, FE_SN_CONTENT_RENDER, FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE, FE_SCL_LNK
    :ti: 2
-   :tcl: tbd
+   :tcl: [[calculate_tcl()]]
 
    Create documentation to document and track software  unit test cases.
 
@@ -75,7 +75,7 @@ Tests
    :tools: TOOL_SPHINX, TOOL_SN
    :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_LINK, FE_SPHINX_NEEDS_DIRECTIVE_NEEDPIE, FE_SPHINX_NEEDS_DIRECTIVE_NEEDBAR, FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE
    :ti: 2
-   :tcl: tbd
+   :tcl: [[calculate_tcl()]]
 
    Document the result of certain test runs and link them to the related
    test cases. Create also test result overview pages with tables and pie
@@ -93,6 +93,7 @@ Qualifications
    :tools: TOOL_SPHINX, TOOL_SN
    :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_SET_META, FE_SN_LINK, FE_SN_CONTENT_RENDER, FE_SN_SCHEMA_VALIDATION, FE_UBC_SCHEMA_VALIDATE, FE_UBC_VALIDATE_JSON, FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE
    :ti: 2
+   :tcl: [[calculate_tcl()]]
 
    Create documentation to document software qualification.
 
