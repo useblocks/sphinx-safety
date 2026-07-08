@@ -9,7 +9,7 @@
 
    sphinx/index
    sphinx-needs/index
-   sphinx-test-reports
+   sphinx-test-reports/index
    sphinx-codelinks/index
    ubc/index
    ubcode

@@ -31,7 +31,7 @@ Architectures
    :id: UC_SW_ARCH
    :outputs:
    :tools: TOOL_SPHINX, TOOL_SN
-   :features:
+   :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_SET_META, FE_SN_LINK, FE_SN_CONTENT_RENDER, FE_SPHINX_NEEDS_DIRECTIVE_NEEDFLOW, FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE
    :ti: 2
    :tcl: tbd
 
@@ -46,7 +46,7 @@ SW APIs
    :id: UC_SW_API
    :outputs:
    :tools: TOOL_SPHINX, TOOL_SN
-   :features:
+   :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_SET_META, FE_SN_LINK, FE_SN_CONTENT_RENDER, FE_SCL_DEF, FE_SCL_LNK, FE_SCL_C, FE_SCL_CPP, FE_SCL_PY
    :ti: 2
    :tcl: tbd
 
@@ -61,7 +61,7 @@ Tests
    :id: UC_UNIT_TEST
    :outputs:
    :tools: TOOL_SPHINX, TOOL_SN
-   :features:
+   :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_SET_META, FE_SN_LINK, FE_SN_CONTENT_RENDER, FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE, FE_SCL_LNK
    :ti: 2
    :tcl: tbd
 
@@ -73,7 +73,7 @@ Tests
    :id: UC_UNIT_TEST_RESULTS
    :outputs:
    :tools: TOOL_SPHINX, TOOL_SN
-   :features:
+   :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_LINK, FE_SPHINX_NEEDS_DIRECTIVE_NEEDPIE, FE_SPHINX_NEEDS_DIRECTIVE_NEEDBAR, FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE
    :ti: 2
    :tcl: tbd
 
@@ -91,7 +91,7 @@ Qualifications
    :inputs:
    :outputs:
    :tools: TOOL_SPHINX, TOOL_SN
-   :features:
+   :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_SET_META, FE_SN_LINK, FE_SN_CONTENT_RENDER, FE_SN_SCHEMA_VALIDATION, FE_UBC_SCHEMA_VALIDATE, FE_UBC_VALIDATE_JSON, FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE
    :ti: 2
 
    Create documentation to document software qualification.
