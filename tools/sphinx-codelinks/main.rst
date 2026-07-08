@@ -4,7 +4,7 @@ Sphinx-CodeLinks
 
 .. tool:: Sphinx-CodeLinks
    :id: TOOL_SCL
-   :version: 1.0.0.
+   :version: 1.3.0
    :status: in_progress
 
    Sphinx-CodeLinks is a lightweight solution for enabling 

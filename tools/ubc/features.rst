@@ -179,3 +179,30 @@ Features
       ``ubproject.toml`` changes. Agents create needs that conflict
       with the current schema and the build fails later than
       necessary.
+
+.. feature:: Cross-check needs.json against an independent index (``ubc diff json``)
+   :id: FE_UBC_JSON_CROSSCHECK
+   :tools: TOOL_UBC
+   :inputs: ART_SPHINX_RST, ART_UBC_NEEDS_JSON
+   :si: yes
+
+   Builds a second, independent ``needs.json`` from the same RST sources
+   (see :need:`FE_UBC_BUILD_JSON`) and compares it field by field against
+   the ``needs.json`` produced by the Sphinx-Needs build (ids, meta-data,
+   links, permalinks).
+
+   This diverse redundancy is the primary *tool error detection* means
+   for the open-source Sphinx-Needs: a defect that silently alters the
+   published index is caught because two independent implementations
+   would have to fail in exactly the same way.
+
+   .. code-block:: bash
+
+      ubc diff json --against _build/html/needs.json
+
+   .. fault:: Divergence not detected (false negative)
+      :id: ER_UBC_CROSSCHECK_FALSE_NEG
+
+      The cross-check reports no difference although the two indices
+      differ (e.g. a field is excluded from the comparison), so a
+      corrupted index passes unnoticed.

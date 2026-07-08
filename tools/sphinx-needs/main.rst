@@ -4,7 +4,7 @@ Sphinx-Needs
 
 .. tool:: Sphinx-Needs
    :id: TOOL_SN
-   :version: 8.0.0
+   :version: 8.1.1
    :status: in_progress
 
    Sphinx makes it easy to create intelligent and beautiful
@@ -26,19 +26,21 @@ Analysis
 
 .. needpie:: Sphinx-Needs objects
    :legend:
-   :labels: Features, Faults, Restrictions, Checks, Steps
-   :explode: 0,0,0,0.1,0.1
+   :labels: Features, Faults, Restrictions, Checks, Steps, Tests, Test Results
+   :explode: 0,0,0,0.1,0.1,0,0
 
    type == "feature" and "tools/sphinx-needs/" in docname
    type == "fault" and "tools/sphinx-needs/" in docname
    type == "restriction" and "tools/sphinx-needs/" in docname
    type == "check" and "tools/sphinx-needs/" in docname
    type == "step" and "tools/sphinx-needs/" in docname
+   type == "test" and "tools/sphinx-needs/" in docname
+   type == "testresult" and "tools/sphinx-needs/" in docname
 
 .. dropdown:: ✅ Compliance statistics
 
-   Features without faults: :need_count:`"tools/sphinx-needs/" in docname and type == "feature" and len(parent_needs_back) == 0`
-   / :need_count:`"tools/sphinx-needs/" in docname and type == "feature"`
+   Features without faults: :need_count:`"tools/sphinx-needs/" in docname and type == "feature" and si == "yes" and len(parent_needs_back) == 0`
+   / :need_count:`"tools/sphinx-needs/" in docname and type == "feature" and si == "yes"`
 
    Faults without a mitigation: :need_count:`"tools/sphinx-needs/" in docname and type == "fault" and (len(avoids_back) == 0 and len(checks_back) == 0)`
    / :need_count:`"tools/sphinx-needs/" in docname and type == "fault"`

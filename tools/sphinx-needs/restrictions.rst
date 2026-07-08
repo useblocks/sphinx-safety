@@ -79,3 +79,13 @@ Restrictions
    default ``True`` for the qualification artefact, so that the
    exported ``needs.json`` is a complete record of the traceability
    including conditions evaluated at build time.
+
+.. restriction:: Keep template files in the versioned project scope
+   :id: RE_SN_TEMPLATE_IN_SCOPE
+   :avoids: ER_SN_TEMPLATE_FILE_NOT_FOUND, ER_SN_TEMPLATE_NEED_FILE_NOT_FOUND, ER_SN_TEMPLATE_NEED_FILE_SYNTAX
+
+   Any Jinja2 template referenced by a need (``:template:`` /
+   ``needs_template``) shall live inside the versioned project scope.
+   Together with :need:`RE_SN_WARNINGS` (warnings become errors), a
+   missing or syntactically broken template file then breaks the build
+   instead of silently producing incomplete output.
