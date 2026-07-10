@@ -12,5 +12,3 @@
    sphinx-test-reports/index
    sphinx-codelinks/index
    ubc/index
-   ubcode
-   ubtrace

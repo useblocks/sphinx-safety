@@ -137,7 +137,7 @@ Features
 
    .. code-block:: bash
 
-      ubc diff git --depth 3 --direction both
+      ubc diff git --impact-depth 3 --impact-direction both
 
    .. fault:: Impact depth truncates the graph
       :id: ER_UBC_DIFF_DEPTH_CUT

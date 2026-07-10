@@ -5,10 +5,10 @@ ubc
    :id: TOOL_UBC
    :status: in_progress
 
-   Command-line tool for checking and formating certain rules in sphinx
+   Command-line tool for checking and formatting certain rules in sphinx
    and rst-based files.
 
-   Little brother of :need:`TOOL_UBCODE`.
+   Little brother of ubCode.
 
    **Commercial tool**
 
