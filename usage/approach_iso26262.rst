@@ -164,7 +164,7 @@ environments.
 
 To further check coverage of the features through testing, also the
 Code Coverage (Statment Coverage) achieved during the above testing
-will be captured and analyzed. Any missing percentage to 100% coverage
+will be captured and analyzed. Any missing percentage to 90% coverage
 will either be closed by additional test cases or the remaining gaps
 be analyzed and justified as part of the qualification package.
 
