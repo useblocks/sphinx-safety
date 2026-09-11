@@ -70,7 +70,7 @@ Features
    :id: FE_UBC_VALIDATE_JSON
    :tools: TOOL_UBC
    :inputs: ART_UBC_NEEDS_JSON
-   :si: no
+   :si: yes
 
    .. fault:: Unknown file format
       :id: ER_UBC_VAL_FORMAT

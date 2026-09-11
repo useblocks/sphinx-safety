@@ -502,7 +502,7 @@ Directives for Creating & Displaying Needs
 .. feature:: Display needs in a filterable table (needtable)
    :id: FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE
    :tools: TOOL_SN
-   :si: no
+   :si: yes
 
    Renders a table of needs based on specified filters. The table columns
    can be customized to show different need options like status or
@@ -515,10 +515,23 @@ Directives for Creating & Displaying Needs
          :status: open
          :columns: id, title, status, links
 
+   .. fault:: Needs matching the filter are missing from the table
+      :id: ER_SN_NEEDTABLE_MISSING
+
+      A need that satisfies the filter is silently omitted from the
+      rendered table, so a traceability item is hidden from review.
+
+   .. fault:: Table shows wrong column values
+      :id: ER_SN_NEEDTABLE_WRONG_DATA
+
+      A displayed column value (e.g. status or outgoing links) does not
+      match the actual need data, so the reader is shown incorrect
+      information.
+
 .. feature:: Render a PlantUML flow diagram of needs (needflow)
    :id: FE_SPHINX_NEEDS_DIRECTIVE_NEEDFLOW
    :tools: TOOL_SN
-   :si: no
+   :si: yes
 
    Generates a flowchart that visualizes the relationships between
    filtered needs. This is excellent for showing process flows or
@@ -529,6 +542,18 @@ Directives for Creating & Displaying Needs
       .. needflow::
          :tags: login_flow
          :show_legend:
+
+   .. fault:: A relationship is missing from the diagram
+      :id: ER_SN_NEEDFLOW_MISSING_LINK
+
+      An existing link between two needs is not drawn, so a dependency
+      is hidden and the visualized traceability is incomplete.
+
+   .. fault:: Diagram shows wrong needs or relationships
+      :id: ER_SN_NEEDFLOW_WRONG_STRUCTURE
+
+      The rendered nodes or edges do not match the actual needs and
+      links, so the flow or architecture is misrepresented.
 
 .. feature:: Create a pie chart based on need statistics (needpie)
    :id: FE_SPHINX_NEEDS_DIRECTIVE_NEEDPIE

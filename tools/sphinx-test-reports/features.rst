@@ -166,7 +166,7 @@ Features
 .. feature:: Filter and display test results
    :id: FE_STR_DISPLAY
    :tools: TOOL_STR
-   :si: no
+   :si: yes
 
    The ``test-results`` and ``test-report`` directives create filtered tables
    and summaries of imported test results within the documentation.
