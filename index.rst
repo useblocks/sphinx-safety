@@ -137,7 +137,7 @@ Support
 
       Consultancy Support
       ^^^
-      innotec GmbH, a member of the TÜV Austria Group, is a German consultancy specializing in functional safety across various sectors, including automotive, machinery, and embedded systems. Their expertise encompasses comprehensive support for tool qualification and validation, ensuring compliance with standards such as ISO 26262, IEC 61508, and EN 50128.
+      innotec GmbH, a member of the TÜV Austria Group, is a German consultancy specializing in functional safety across various sectors, including automotive, machinery, and embedded systems. Their expertise encompasses comprehensive support for tool qualification and validation, ensuring compliance with standards such as ISO 26262, IEC 61508, and EN 50716.
 
       +++
       .. image:: https://innotecsafety.com/wp-content/uploads/2024/10/innotec-logo-tuv-austria-group-e1728416243598-1.png

@@ -35,7 +35,7 @@ Tool support
 ------------
 
 The restrictions documented here got integrated in some tools to
-support autoamtic and faster user feedback.
+support automatic and faster user feedback.
 
 ubCode
 ~~~~~~
