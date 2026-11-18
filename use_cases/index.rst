@@ -3,48 +3,6 @@
 :octicon:`briefcase` Use cases
 ==============================
 
-The use cases below describe the safety-relevant usage of the toolchain.
-Traceability is the central concern that connects all of them: every
-requirement, architecture element, detailed design element, code location,
-test case and test result is a traceability object, and the links between
-these objects show which requirement is realised by which specification and
-code, and which test verifies it. Traceability is therefore classified as a
-use case of its own (:need:`UC_TRACEABILITY`), in addition to the use cases
-that document the individual artifacts.
-
-Traceability
-------------
-
-.. usecase:: Establish and verify traceability between development artifacts
-   :id: UC_TRACEABILITY
-   :inputs:
-   :outputs:
-   :tools: TOOL_SPHINX, TOOL_SN, TOOL_SCL, TOOL_STR, TOOL_UBC
-   :features: FE_SPHINX_READ, FE_SN_READ, FE_SN_SET_META, FE_SN_LINK, FE_SN_CONTENT_RENDER, FE_SPHINX_NEEDS_CUSTOMIZABLE_LINKS, FE_SPHINX_NEEDS_LINKING_DIRECT, FE_SPHINX_NEEDS_LINKING_BIDIRECTIONAL, FE_SPHINX_NEEDS_LINKING_DEAD_LINK_DETECTION, FE_SN_TYPED_LINK_SCHEMA, FE_SN_SCHEMA_VALIDATION, FE_UBC_SCHEMA_VALIDATE, FE_SCL_LNK, FE_STR_PROPERTY_LINKS, FE_SPHINX_NEEDS_DIRECTIVE_NEEDTABLE, FE_SPHINX_NEEDS_DIRECTIVE_NEEDFLOW
-   :ti: 2
-   :tcl: [[calculate_tcl()]]
-
-   Establish links between traceability objects across the development
-   lifecycle and use these links as evidence of completeness and consistency:
-
-   * requirements are linked to the architecture and detailed design elements
-     that realise them,
-   * source code is linked to the detailed design and requirements it
-     implements,
-   * test cases are linked to the requirements and design elements they
-     verify,
-   * test results are linked to the test cases they were produced by.
-
-   Links are validated during the build (dead link detection, typed link
-   schemas, schema validation) and presented as backlinks, traceability
-   tables and flow diagrams, so that a reviewer can answer for every
-   requirement which specification handles it, which code implements it and
-   which test verifies it.
-
-   An incorrect, missing or wrongly shown link can hide a requirement that is
-   not implemented or not verified. The traceability documentation is used as
-   part of an official release delivery.
-
 Requirements
 ------------
 
@@ -61,6 +19,8 @@ Requirements
    :responsible:
 
    Create documentation to document and track software requirements.
+   Requirements are linked to the specifications and tests that realise and
+   verify them, establishing traceability between these artifacts.
    Input are ``rst`` files and output is a static website with ``HTML``, ``CSS``
    and ``JS`` files.
 
