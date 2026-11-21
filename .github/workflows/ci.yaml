@@ -10,9 +10,9 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v6
       - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version-file: ".python-version"
+        # uv installs the version pinned in .python-version; setup-python has no
+        # prebuilt 3.12.7 for the ubuntu-latest (26.04) runner image.
+        run: uv python install
       - name: Install graphviz and Java
         run: sudo apt-get --yes install graphviz openjdk-21-jre
       - name: Build docs
