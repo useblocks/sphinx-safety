@@ -14,6 +14,6 @@ jobs:
         # prebuilt 3.12.7 for the ubuntu-latest (26.04) runner image.
         run: uv python install
       - name: Install graphviz and Java
-        run: sudo apt-get --yes install graphviz openjdk-21-jre
+        run: sudo apt-get update && sudo apt-get --yes install graphviz openjdk-21-jre
       - name: Build docs
         run: uv run sphinx-build -b html . _build/html
