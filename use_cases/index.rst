@@ -19,6 +19,8 @@ Requirements
    :responsible:
 
    Create documentation to document and track software requirements.
+   Requirements are linked to the specifications and tests that realise and
+   verify them, establishing traceability between these artifacts.
    Input are ``rst`` files and output is a static website with ``HTML``, ``CSS``
    and ``JS`` files.
 
