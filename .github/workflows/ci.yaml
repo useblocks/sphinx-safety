@@ -17,3 +17,23 @@ jobs:
         run: sudo apt-get update && sudo apt-get --yes install graphviz openjdk-21-jre
       - name: Build docs
         run: uv run sphinx-build -b html . _build/html
+  all_good:
+    name: all_good
+    # Aggregation gate — the single required check on main: every CI job is
+    # listed in `needs:`, and this job fails unless all of them succeeded, so
+    # adding a job here makes it required without touching the ruleset.
+    needs: [docs]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify every needed job succeeded
+        run: |
+          results="${{ join(needs.*.result, ' ') }}"
+          echo "Upstream job results: ${results}"
+          for r in ${results}; do
+            if [ "${r}" != "success" ]; then
+              echo "::error::Required job result was '${r}', not success"
+              exit 1
+            fi
+          done
+          echo "All required jobs succeeded."
